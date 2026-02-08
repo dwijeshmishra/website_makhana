@@ -67,7 +67,10 @@ const ProductDetail = ({ products, loading }) => {
               ) : null}
             </div>
             <div className="detail-actions">
-              <a className="btn primary" href="mailto:info@samarthoverseasindia.com">
+              <a
+                className="btn primary"
+                href="mailto:info@samarthoverseasindia.com"
+              >
                 Contact for pricing
               </a>
               <Link className="btn ghost" to="/#contact">
