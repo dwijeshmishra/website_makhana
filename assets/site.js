@@ -148,6 +148,18 @@ const renderProductDetail = (products) => {
         <a class="btn ghost" href="index.html#contact">Request quote</a>
         <a class="btn ghost" href="tel:+919826015502">Call now</a>
       </div>
+      <div class="detail-contact">
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:info@samarthoverseasindia.com">
+            info@samarthoverseasindia.com
+          </a>
+        </p>
+        <p>
+          <strong>Phone:</strong>
+          <a href="tel:+919826015502">+91 98260 15502</a>
+        </p>
+      </div>
     </div>
   `;
 };
