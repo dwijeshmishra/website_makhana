@@ -15,7 +15,7 @@ const Home = ({ products, loading }) => {
                 <p className="hero-copy">
                   We supply garlic, red chilli, onion, makhana, rice, and a wide
                   range of spices with strict quality control and export
-                  documentation support.
+                  ready dispatch.
                 </p>
               </div>
               <div className="hero-actions">
@@ -84,7 +84,7 @@ const Home = ({ products, loading }) => {
               </div>
               <p className="section-subtitle">
                 Share your requirements and destination. We handle grading,
-                packing, and export documentation with transparent updates.
+                packing, and shipment readiness with transparent updates.
               </p>
             </div>
             <div className="step-grid">
@@ -127,9 +127,9 @@ const Home = ({ products, loading }) => {
                 <p>Choose from standard bags or custom branded packing.</p>
               </div>
               <div className="feature-card">
-                <span className="feature-icon">DOC</span>
-                <h3>Documentation support</h3>
-                <p>We help with export documentation and compliance.</p>
+                <span className="feature-icon">SUP</span>
+                <h3>Consistent supply</h3>
+                <p>Planned sourcing ensures steady volumes for buyers.</p>
               </div>
             </div>
           </div>
