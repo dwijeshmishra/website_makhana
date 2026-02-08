@@ -525,6 +525,18 @@ img {
   flex-wrap: wrap;
 }
 
+.detail-contact {
+  margin-top: 18px;
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.detail-contact a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
 .related-section {
   margin-top: 60px;
 }
