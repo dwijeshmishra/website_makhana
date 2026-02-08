@@ -4,6 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Samarth Overseas - Export Quality Products</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="assets/styles.css" />
   </head>
   <body>
@@ -19,6 +25,7 @@
         <nav class="nav">
           <a href="index.html" class="nav-link">Home</a>
           <a href="#products" class="nav-link">Products</a>
+          <a href="#gallery" class="nav-link">Gallery</a>
           <a href="#contact" class="nav-link">Contact</a>
         </nav>
       </div>
@@ -27,7 +34,7 @@
     <main>
       <section class="hero">
         <div class="container hero-content">
-          <div>
+          <div class="hero-text">
             <p class="eyebrow">Reliable sourcing. Consistent quality.</p>
             <h1>Pure, fresh, and export-ready products for global buyers.</h1>
             <p class="hero-copy">
@@ -39,15 +46,28 @@
               <a class="btn primary" href="#products">Explore Products</a>
               <a class="btn ghost" href="#contact">Request a Quote</a>
             </div>
+            <div class="hero-stats">
+              <div class="stat-card">
+                <p class="stat-value">24h</p>
+                <p class="stat-label">Quote response</p>
+              </div>
+              <div class="stat-card">
+                <p class="stat-value">Custom</p>
+                <p class="stat-label">Packaging options</p>
+              </div>
+              <div class="stat-card">
+                <p class="stat-value">Export</p>
+                <p class="stat-label">Documentation help</p>
+              </div>
+            </div>
           </div>
-          <div class="hero-card">
-            <p class="hero-card-title">Why buyers choose us</p>
-            <ul class="hero-list">
-              <li>Export-ready grading and packing</li>
-              <li>Custom packaging and private labeling</li>
-              <li>Consistent supply and timely dispatch</li>
-              <li>Transparent documentation support</li>
-            </ul>
+          <div class="hero-visual">
+            <img
+              src="assets/images/spices.png"
+              alt="Export spice assortment"
+            />
+            <div class="hero-badge">Export-ready lots</div>
+            <div class="hero-badge secondary">Custom packaging</div>
           </div>
         </div>
       </section>
@@ -68,6 +88,38 @@
         </div>
       </section>
 
+      <section class="section light" id="process">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">How we work</p>
+              <h2>From sourcing to shipment</h2>
+            </div>
+            <p class="section-subtitle">
+              Share your requirements and destination. We handle grading,
+              packing, and export documentation with transparent updates.
+            </p>
+          </div>
+          <div class="step-grid">
+            <div class="step-card">
+              <p class="step-number">01</p>
+              <h3>Requirement & sampling</h3>
+              <p>We confirm specs, grade, and packaging preferences.</p>
+            </div>
+            <div class="step-card">
+              <p class="step-number">02</p>
+              <h3>Quality checks</h3>
+              <p>Each lot is inspected for size, moisture, and purity.</p>
+            </div>
+            <div class="step-card">
+              <p class="step-number">03</p>
+              <h3>Dispatch & documentation</h3>
+              <p>We manage packing, labeling, and export paperwork.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="section accent">
         <div class="container">
           <div class="section-header">
@@ -78,17 +130,66 @@
           </div>
           <div class="feature-grid">
             <div class="feature-card">
+              <span class="feature-icon">QC</span>
               <h3>Quality assured</h3>
               <p>Each lot is checked for size, moisture, and purity.</p>
             </div>
             <div class="feature-card">
+              <span class="feature-icon">PK</span>
               <h3>Flexible packaging</h3>
               <p>Choose from standard bags or custom branded packing.</p>
             </div>
             <div class="feature-card">
+              <span class="feature-icon">DOC</span>
               <h3>Documentation support</h3>
               <p>We help with export documentation and compliance.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Gallery</p>
+              <h2>Export-ready lots</h2>
+            </div>
+            <p class="section-subtitle">
+              Representative images from our export catalog and packing.
+            </p>
+          </div>
+          <div class="gallery-grid">
+            <figure class="gallery-item">
+              <img src="assets/images/garlic.png" alt="Garlic export lot" />
+              <figcaption>Garlic</figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="assets/images/red-chilli.png"
+                alt="Red chilli export lot"
+              />
+              <figcaption>Lal Khadi Red Chilli</figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="assets/images/onion.png" alt="Onion export lot" />
+              <figcaption>Onion</figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="assets/images/makhana.png" alt="Makhana export lot" />
+              <figcaption>Makhana (Fox Nuts)</figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="assets/images/basmati-rice.png"
+                alt="Basmati rice export lot"
+              />
+              <figcaption>Basmati Rice</figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="assets/images/spices.png" alt="Whole spices export lot" />
+              <figcaption>Whole Spices</figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -102,6 +203,16 @@
               Send your requirements and destination port. Our team will share
               the latest quote and availability.
             </p>
+            <div class="contact-highlights">
+              <div>
+                <p class="highlight-title">Fast response</p>
+                <p>Quotes within 24 hours for standard inquiries.</p>
+              </div>
+              <div>
+                <p class="highlight-title">Export support</p>
+                <p>We assist with documents and compliance.</p>
+              </div>
+            </div>
           </div>
           <div class="contact-details">
             <div>
@@ -128,6 +239,25 @@
         </div>
       </section>
     </main>
+
+    <section class="cta-band">
+      <div class="container cta-content">
+        <div>
+          <p class="eyebrow">Ready to export?</p>
+          <h2>Tell us your requirement today.</h2>
+          <p>
+            Share grade, packaging, and destination port. We will confirm
+            availability with the latest quote.
+          </p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn primary" href="mailto:info@samarthoverseasindia.com">
+            Email requirement
+          </a>
+          <a class="btn ghost" href="tel:+919826015502">Call now</a>
+        </div>
+      </div>
+    </section>
 
     <footer class="site-footer">
       <div class="container footer-content">
