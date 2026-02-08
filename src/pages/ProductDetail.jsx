@@ -44,6 +44,10 @@ const ProductDetail = ({ products, loading }) => {
             <p className="eyebrow">{product.category || 'Export item'}</p>
             <h1>{product.name}</h1>
             <p>{product.description || product.summary}</p>
+            <div className="detail-callout">
+              Contact us for the latest pricing and MOQ based on grade and
+              shipment size.
+            </div>
             <div className="detail-meta">
               {product.origin ? (
                 <p>
