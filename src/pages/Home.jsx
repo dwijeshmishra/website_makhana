@@ -43,8 +43,10 @@ const Home = ({ products, loading }) => {
             </div>
             <div className="hero-visual">
               <img src="/images/spices.png" alt="Export spice assortment" />
-              <div className="hero-badge">Export-ready lots</div>
-              <div className="hero-badge secondary">Custom packaging</div>
+              <div className="hero-badges">
+                <span className="hero-badge">Export-ready lots</span>
+                <span className="hero-badge secondary">Custom packaging</span>
+              </div>
             </div>
           </div>
         </section>

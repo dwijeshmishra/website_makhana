@@ -206,6 +206,8 @@ img {
   border-radius: 28px;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
+  display: grid;
+  gap: 16px;
 }
 
 .hero-visual img {
@@ -215,22 +217,29 @@ img {
   object-fit: cover;
 }
 
+.hero-badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .hero-badge {
-  position: absolute;
-  left: 30px;
-  bottom: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: var(--surface);
   border: 1px solid var(--border);
-  padding: 10px 16px;
+  padding: 8px 14px;
   border-radius: 999px;
   font-weight: 600;
+  color: var(--primary-dark);
   box-shadow: var(--shadow-soft);
 }
 
 .hero-badge.secondary {
-  left: auto;
-  right: 30px;
-  top: 30px;
+  background: var(--primary-soft);
+  border-color: transparent;
+  color: var(--primary);
 }
 
 .section {
@@ -672,11 +681,6 @@ textarea {
 
   .hero-visual img {
     height: 260px;
-  }
-
-  .hero-badge,
-  .hero-badge.secondary {
-    position: static;
   }
 
   .hero-visual {
