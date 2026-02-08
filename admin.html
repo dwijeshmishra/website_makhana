@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin - Manage Products</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <div class="brand">
+          <span class="brand-mark">SO</span>
+          <div>
+            <p class="brand-name">Samarth Overseas</p>
+            <p class="brand-tagline">Product Manager</p>
+          </div>
+        </div>
+        <nav class="nav">
+          <a href="index.html" class="nav-link">Website</a>
+          <a href="admin.html" class="nav-link">Admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Admin tools</p>
+              <h1>Manage product catalog</h1>
+            </div>
+          </div>
+
+          <div class="admin-note">
+            <p>
+              This admin page works on a static website. It saves products in
+              your browser for easy editing and lets you export the final
+              products.json file. After exporting, replace
+              <strong>data/products.json</strong> in your site to update the
+              catalog for all visitors.
+            </p>
+            <div class="admin-actions">
+              <button id="export-json" class="btn primary" type="button">
+                Download products.json
+              </button>
+              <button id="copy-json" class="btn ghost" type="button">
+                Copy JSON
+              </button>
+              <label class="btn ghost file-input">
+                Import JSON
+                <input id="import-json" type="file" accept="application/json" />
+              </label>
+              <button id="reset-json" class="btn danger" type="button">
+                Reset to default
+              </button>
+            </div>
+            <p class="admin-helper">
+              Tip: After downloading, replace the file in your hosting panel or
+              repository to publish changes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section light">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Add or edit</p>
+              <h2>Product information</h2>
+            </div>
+          </div>
+
+          <form id="product-form" class="admin-form">
+            <div class="form-grid">
+              <label>
+                Product name
+                <input id="name" name="name" type="text" required />
+              </label>
+              <label>
+                Product ID (optional)
+                <input id="id" name="id" type="text" placeholder="auto-generate" />
+              </label>
+              <label>
+                Category
+                <input id="category" name="category" type="text" />
+              </label>
+              <label>
+                Origin
+                <input id="origin" name="origin" type="text" placeholder="India" />
+              </label>
+              <label>
+                Packaging
+                <input id="packaging" name="packaging" type="text" />
+              </label>
+              <label>
+                MOQ
+                <input id="moq" name="moq" type="text" />
+              </label>
+              <label class="full">
+                Short description
+                <input id="summary" name="summary" type="text" />
+              </label>
+              <label class="full">
+                Detailed description
+                <textarea id="description" name="description" rows="4"></textarea>
+              </label>
+              <label class="full">
+                Image URL
+                <input
+                  id="image"
+                  name="image"
+                  type="text"
+                  placeholder="assets/images/placeholder.svg"
+                />
+              </label>
+              <label class="full">
+                Tags (comma separated)
+                <input id="tags" name="tags" type="text" />
+              </label>
+            </div>
+            <div class="form-actions">
+              <button id="save-product" class="btn primary" type="submit">
+                Save product
+              </button>
+              <button id="cancel-edit" class="btn ghost" type="button">
+                Cancel edit
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Current catalog</p>
+              <h2>Saved products</h2>
+            </div>
+          </div>
+          <div id="admin-products" class="admin-list"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <p>Samarth Overseas. Admin console.</p>
+        <a href="index.html">View website</a>
+      </div>
+    </footer>
+
+    <script src="assets/admin.js"></script>
+  </body>
+</html>
