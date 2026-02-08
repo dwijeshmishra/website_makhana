@@ -60,6 +60,66 @@
     "tags": ["grain", "export", "premium"]
   },
   {
+    "id": "non-basmati-rice",
+    "name": "Non-Basmati Rice",
+    "category": "Grains",
+    "summary": "Reliable non-basmati varieties for bulk buyers.",
+    "description": "Consistent quality non-basmati rice suitable for bulk shipments with clean grading and packing.",
+    "image": "/images/placeholder.svg",
+    "origin": "India",
+    "packaging": "10 kg, 25 kg, 50 kg bags",
+    "moq": "10 MT",
+    "tags": ["grain", "bulk", "export"]
+  },
+  {
+    "id": "oregano",
+    "name": "Oregano",
+    "category": "Herbs",
+    "summary": "Dried oregano with strong aroma and clean sorting.",
+    "description": "Export-quality dried oregano for seasoning blends and food manufacturing.",
+    "image": "/images/placeholder.svg",
+    "origin": "India",
+    "packaging": "1 kg, 5 kg, 10 kg bags",
+    "moq": "1 MT",
+    "tags": ["herb", "seasoning", "export"]
+  },
+  {
+    "id": "seasoning-herbs",
+    "name": "Seasoning Herbs",
+    "category": "Herbs",
+    "summary": "Mixed herbs and seasoning options on request.",
+    "description": "Custom seasoning herb mixes for bulk buyers with consistent aroma and quality.",
+    "image": "/images/placeholder.svg",
+    "origin": "India",
+    "packaging": "1 kg, 5 kg, 10 kg bags",
+    "moq": "1 MT",
+    "tags": ["herb", "blend", "seasoning"]
+  },
+  {
+    "id": "confectionery",
+    "name": "Confectionery",
+    "category": "Confectionery",
+    "summary": "Confectionery items available for export supply.",
+    "description": "Assorted confectionery products supplied as per buyer requirements and packaging specs.",
+    "image": "/images/placeholder.svg",
+    "origin": "India",
+    "packaging": "Custom",
+    "moq": "Custom",
+    "tags": ["confectionery", "export", "custom"]
+  },
+  {
+    "id": "agricultural-products",
+    "name": "Other Agricultural Products",
+    "category": "Agricultural",
+    "summary": "Additional agricultural products available on request.",
+    "description": "We can source other agricultural products based on buyer requirements.",
+    "image": "/images/placeholder.svg",
+    "origin": "India",
+    "packaging": "Custom",
+    "moq": "Custom",
+    "tags": ["agricultural", "custom", "export"]
+  },
+  {
     "id": "whole-spices",
     "name": "Whole Spices",
     "category": "Spices",
