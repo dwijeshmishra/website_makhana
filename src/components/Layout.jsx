@@ -43,6 +43,20 @@ const Layout = () => {
         <p>Samarth Overseas. All rights reserved.</p>
       </div>
     </footer>
+
+    <div className="mobile-bar">
+      <a className="btn primary" href="tel:+919826015502">
+        Call
+      </a>
+      <a
+        className="btn ghost"
+        href="https://wa.me/919826015502"
+        target="_blank"
+        rel="noreferrer"
+      >
+        WhatsApp
+      </a>
+    </div>
     </>
   )
 }

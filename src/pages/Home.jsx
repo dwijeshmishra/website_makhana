@@ -1,6 +1,37 @@
+import { useMemo, useState } from 'react'
 import ProductCard from '../components/ProductCard.jsx'
 
 const Home = ({ products, loading }) => {
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [query, setQuery] = useState('')
+
+  const categories = useMemo(() => {
+    const unique = new Set(
+      products.map((product) => product.category).filter(Boolean),
+    )
+    return ['All', ...Array.from(unique)]
+  }, [products])
+
+  const filteredProducts = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase()
+    return products.filter((product) => {
+      const matchesCategory =
+        selectedCategory === 'All' || product.category === selectedCategory
+      const searchable = [
+        product.name,
+        product.summary,
+        product.category,
+        product.tags?.join(' '),
+      ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase()
+      const matchesQuery =
+        normalizedQuery.length === 0 || searchable.includes(normalizedQuery)
+      return matchesCategory && matchesQuery
+    })
+  }, [products, selectedCategory, query])
+
   const galleryItems = products.slice(0, 6)
 
   return (
@@ -63,13 +94,45 @@ const Home = ({ products, loading }) => {
                 us for the latest quote.
               </p>
             </div>
+            <div className="product-toolbar">
+              <div className="search-input">
+                <input
+                  type="text"
+                  placeholder="Search products"
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                />
+              </div>
+              <div className="category-tabs">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    type="button"
+                    className={`chip ${
+                      category === selectedCategory ? 'active' : ''
+                    }`}
+                    onClick={() => setSelectedCategory(category)}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+              <p className="product-count">
+                Showing {filteredProducts.length} product
+                {filteredProducts.length === 1 ? '' : 's'}
+              </p>
+            </div>
             {loading ? (
               <p>Loading products...</p>
             ) : (
               <div className="product-grid">
-                {products.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
+                {filteredProducts.length ? (
+                  filteredProducts.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))
+                ) : (
+                  <p>No matching products found.</p>
+                )}
               </div>
             )}
           </div>
