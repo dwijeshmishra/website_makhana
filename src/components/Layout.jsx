@@ -1,7 +1,15 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 
-const Layout = () => (
-  <>
+const Layout = () => {
+  const location = useLocation()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [location.pathname])
+
+  return (
+    <>
     <header className="site-header">
       <div className="container header-content">
         <div className="brand">
@@ -35,7 +43,8 @@ const Layout = () => (
         <p>Samarth Overseas. All rights reserved.</p>
       </div>
     </footer>
-  </>
-)
+    </>
+  )
+}
 
 export default Layout
