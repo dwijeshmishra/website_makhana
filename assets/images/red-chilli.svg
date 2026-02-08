@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+  <rect width="600" height="400" fill="#ffe9ea"/>
+  <rect x="30" y="30" width="540" height="340" rx="28" fill="#fff7f7" stroke="#e2c3c7" stroke-width="2"/>
+  <path d="M150 220 C230 120 360 120 440 220 C390 250 320 260 300 270 C260 290 200 280 150 220 Z" fill="#d43734" stroke="#b22926" stroke-width="3"/>
+  <path d="M260 170 C280 120 320 90 360 80" fill="none" stroke="#2f6b3f" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="360" cy="80" r="10" fill="#2f6b3f"/>
+  <text x="300" y="330" text-anchor="middle" font-family="Segoe UI, Tahoma, sans-serif" font-size="30" fill="#8c2220">Red Chilli</text>
+</svg>
