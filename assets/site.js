@@ -146,6 +146,7 @@ const renderProductDetail = (products) => {
           Contact for pricing
         </a>
         <a class="btn ghost" href="index.html#contact">Request quote</a>
+        <a class="btn ghost" href="tel:+919826015502">Call now</a>
       </div>
     </div>
   `;
