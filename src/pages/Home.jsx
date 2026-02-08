@@ -195,7 +195,10 @@ const Home = ({ products, loading }) => {
                 <p>Reply within 24 hours with pricing details.</p>
               </div>
               <div className="detail-actions">
-                <a className="btn primary" href="mailto:info@samarthoverseasindia.com">
+                <a
+                  className="btn primary"
+                  href="mailto:info@samarthoverseasindia.com"
+                >
                   Send requirement
                 </a>
                 <a className="btn ghost" href="tel:+919826015502">
@@ -218,7 +221,10 @@ const Home = ({ products, loading }) => {
             </p>
           </div>
           <div className="cta-actions">
-            <a className="btn primary" href="mailto:info@samarthoverseasindia.com">
+            <a
+              className="btn primary"
+              href="mailto:info@samarthoverseasindia.com"
+            >
               Email requirement
             </a>
             <a className="btn ghost" href="tel:+919826015502">
