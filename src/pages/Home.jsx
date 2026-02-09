@@ -34,6 +34,30 @@ const Home = ({ products, loading }) => {
 
   const galleryItems = products.slice(0, 6)
 
+  const groupedProducts = useMemo(() => {
+    const groups = filteredProducts.reduce((acc, product) => {
+      const key = product.category || 'Other'
+      if (!acc[key]) {
+        acc[key] = []
+      }
+      acc[key].push(product)
+      return acc
+    }, {})
+
+    const categoryOrder = ['Rice', 'Confectionery', 'Spices', 'Agricultural']
+    const entries = Object.entries(groups)
+
+    entries.sort(([a], [b]) => {
+      const indexA = categoryOrder.indexOf(a)
+      const indexB = categoryOrder.indexOf(b)
+      const aOrder = indexA === -1 ? Number.MAX_SAFE_INTEGER : indexA
+      const bOrder = indexB === -1 ? Number.MAX_SAFE_INTEGER : indexB
+      return aOrder - bOrder
+    })
+
+    return entries
+  }, [filteredProducts])
+
   return (
     <>
       <main>
@@ -125,15 +149,24 @@ const Home = ({ products, loading }) => {
             {loading ? (
               <p>Loading products...</p>
             ) : (
-              <div className="product-grid">
-                {filteredProducts.length ? (
-                  filteredProducts.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+              <>
+                {groupedProducts.length ? (
+                  groupedProducts.map(([category, items]) => (
+                    <div className="category-section" key={category}>
+                      <div className="category-title">
+                        <h3>{category}</h3>
+                      </div>
+                      <div className="product-grid">
+                        {items.map((product) => (
+                          <ProductCard key={product.id} product={product} />
+                        ))}
+                      </div>
+                    </div>
                   ))
                 ) : (
                   <p>No matching products found.</p>
                 )}
-              </div>
+              </>
             )}
           </div>
         </section>
