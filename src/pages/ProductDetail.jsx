@@ -41,7 +41,9 @@ const ProductDetail = ({ products, loading }) => {
             <img src={image} alt={product.name} />
           </div>
           <div>
-            <p className="eyebrow">{product.category || 'Export item'}</p>
+            <p className="eyebrow">
+              {product.subcategory || product.category || 'Export item'}
+            </p>
             <h1>{product.name}</h1>
             <p>{product.description || product.summary}</p>
             <div className="detail-callout">
@@ -49,6 +51,16 @@ const ProductDetail = ({ products, loading }) => {
               shipment size.
             </div>
             <div className="detail-meta">
+              {product.category ? (
+                <p>
+                  <strong>Category:</strong> {product.category}
+                </p>
+              ) : null}
+              {product.subcategory ? (
+                <p>
+                  <strong>Subcategory:</strong> {product.subcategory}
+                </p>
+              ) : null}
               {product.origin ? (
                 <p>
                   <strong>Origin:</strong> {product.origin}

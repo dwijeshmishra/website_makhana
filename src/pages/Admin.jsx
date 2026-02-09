@@ -4,6 +4,7 @@ const emptyForm = {
   id: '',
   name: '',
   category: '',
+  subcategory: '',
   origin: 'India',
   packaging: '',
   moq: '',
@@ -49,6 +50,7 @@ const Admin = ({ products, setProducts, onReset, loading }) => {
       id,
       name,
       category: raw.category.trim(),
+      subcategory: raw.subcategory.trim(),
       origin: raw.origin.trim(),
       packaging: raw.packaging.trim(),
       moq: raw.moq.trim(),
@@ -94,6 +96,7 @@ const Admin = ({ products, setProducts, onReset, loading }) => {
       id: product.id || '',
       name: product.name || '',
       category: product.category || '',
+      subcategory: product.subcategory || '',
       origin: product.origin || '',
       packaging: product.packaging || '',
       moq: product.moq || '',
@@ -184,6 +187,9 @@ const Admin = ({ products, setProducts, onReset, loading }) => {
           </p>
           <p>
             <strong>Category:</strong> {product.category || 'Not set'}
+          </p>
+          <p>
+            <strong>Subcategory:</strong> {product.subcategory || 'Not set'}
           </p>
           <p>{product.summary || ''}</p>
         </div>
@@ -288,6 +294,16 @@ const Admin = ({ products, setProducts, onReset, loading }) => {
                   name="category"
                   type="text"
                   value={formState.category}
+                  onChange={handleChange}
+                />
+              </label>
+              <label>
+                Subcategory
+                <input
+                  id="subcategory"
+                  name="subcategory"
+                  type="text"
+                  value={formState.subcategory}
                   onChange={handleChange}
                 />
               </label>
