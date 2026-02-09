@@ -4,13 +4,8 @@ import ProductCard from '../components/ProductCard.jsx'
 const Home = ({ products, loading }) => {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [query, setQuery] = useState('')
-
-  const categories = useMemo(() => {
-    const unique = new Set(
-      products.map((product) => product.category).filter(Boolean),
-    )
-    return ['All', ...Array.from(unique)]
-  }, [products])
+  const categoryOrder = ['Rice', 'Confectionery', 'Spices', 'Agricultural']
+  const categories = ['All', ...categoryOrder]
 
   const filteredProducts = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase()
@@ -44,7 +39,6 @@ const Home = ({ products, loading }) => {
       return acc
     }, {})
 
-    const categoryOrder = ['Rice', 'Confectionery', 'Spices', 'Agricultural']
     const entries = Object.entries(groups)
 
     entries.sort(([a], [b]) => {
