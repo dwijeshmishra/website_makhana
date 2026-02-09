@@ -431,6 +431,35 @@ img {
   );
 }
 
+.subcategory-section {
+  margin-bottom: 24px;
+}
+
+.subcategory-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0 14px;
+  color: var(--muted);
+}
+
+.subcategory-title h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.subcategory-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(15, 118, 110, 0.25),
+    transparent
+  );
+}
+
 .section-subtitle {
   color: var(--muted);
   max-width: 380px;

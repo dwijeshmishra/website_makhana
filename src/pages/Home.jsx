@@ -16,6 +16,7 @@ const Home = ({ products, loading }) => {
         product.name,
         product.summary,
         product.category,
+        product.subcategory,
         product.tags?.join(' '),
       ]
         .filter(Boolean)
@@ -31,11 +32,15 @@ const Home = ({ products, loading }) => {
 
   const groupedProducts = useMemo(() => {
     const groups = filteredProducts.reduce((acc, product) => {
-      const key = product.category || 'Other'
-      if (!acc[key]) {
-        acc[key] = []
+      const category = product.category || 'Other'
+      const subcategory = product.subcategory || 'Other'
+      if (!acc[category]) {
+        acc[category] = {}
       }
-      acc[key].push(product)
+      if (!acc[category][subcategory]) {
+        acc[category][subcategory] = []
+      }
+      acc[category][subcategory].push(product)
       return acc
     }, {})
 
@@ -145,18 +150,31 @@ const Home = ({ products, loading }) => {
             ) : (
               <>
                 {groupedProducts.length ? (
-                  groupedProducts.map(([category, items]) => (
-                    <div className="category-section" key={category}>
-                      <div className="category-title">
-                        <h3>{category}</h3>
-                      </div>
-                      <div className="product-grid">
-                        {items.map((product) => (
-                          <ProductCard key={product.id} product={product} />
+                  groupedProducts.map(([category, subgroups]) => {
+                    if (selectedCategory !== 'All' && category !== selectedCategory) {
+                      return null
+                    }
+
+                    return (
+                      <div className="category-section" key={category}>
+                        <div className="category-title">
+                          <h3>{category}</h3>
+                        </div>
+                        {Object.entries(subgroups).map(([subcategory, items]) => (
+                          <div className="subcategory-section" key={subcategory}>
+                            <div className="subcategory-title">
+                              <h4>{subcategory}</h4>
+                            </div>
+                            <div className="product-grid">
+                              {items.map((product) => (
+                                <ProductCard key={product.id} product={product} />
+                              ))}
+                            </div>
+                          </div>
                         ))}
                       </div>
-                    </div>
-                  ))
+                    )
+                  })
                 ) : (
                   <p>No matching products found.</p>
                 )}
