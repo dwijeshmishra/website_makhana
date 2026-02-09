@@ -404,6 +404,33 @@ img {
   margin: 0;
 }
 
+.category-section {
+  margin-bottom: 36px;
+}
+
+.category-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 16px;
+}
+
+.category-title h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.category-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(15, 118, 110, 0.4),
+    transparent
+  );
+}
+
 .section-subtitle {
   color: var(--muted);
   max-width: 380px;

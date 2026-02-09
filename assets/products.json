@@ -1,15 +1,75 @@
 [
   {
-    "id": "garlic",
-    "name": "Garlic",
-    "category": "Spices",
-    "summary": "Export grade garlic with strong aroma and uniform cloves.",
-    "description": "We supply well-sorted garlic suitable for export with moisture control, clean skins, and consistent sizing.",
-    "image": "/images/garlic.png",
+    "id": "basmati-rice",
+    "name": "Basmati Rice",
+    "category": "Rice",
+    "summary": "Long grain basmati with strong aroma and clean polishing.",
+    "description": "We source and supply basmati rice with consistent grain length and low broken percentage.",
+    "image": "/images/basmati-rice.png",
     "origin": "India",
-    "packaging": "5 kg, 10 kg, 20 kg mesh bags",
+    "packaging": "10 kg, 25 kg, 50 kg bags",
     "moq": "5 MT",
-    "tags": ["whole", "export", "fresh"]
+    "tags": ["rice", "export", "premium"]
+  },
+  {
+    "id": "non-basmati-rice",
+    "name": "Non-Basmati Rice",
+    "category": "Rice",
+    "summary": "Reliable non-basmati varieties for bulk buyers.",
+    "description": "Consistent quality non-basmati rice suitable for bulk shipments with clean grading and packing.",
+    "image": "/images/non-basmati-rice.png",
+    "origin": "India",
+    "packaging": "10 kg, 25 kg, 50 kg bags",
+    "moq": "10 MT",
+    "tags": ["rice", "bulk", "export"]
+  },
+  {
+    "id": "sela-rice",
+    "name": "Sella Rice",
+    "category": "Rice",
+    "summary": "Parboiled sella rice with consistent grain quality.",
+    "description": "Export quality sella rice for bulk buyers with clean grading and packing.",
+    "image": "/images/placeholder.svg",
+    "origin": "India",
+    "packaging": "10 kg, 25 kg, 50 kg bags",
+    "moq": "10 MT",
+    "tags": ["rice", "parboiled", "export"]
+  },
+  {
+    "id": "candy",
+    "name": "Candy",
+    "category": "Confectionery",
+    "summary": "Assorted candy options for export buyers.",
+    "description": "Candy products supplied as per buyer requirements and packaging specs.",
+    "image": "/images/confectionery.png",
+    "origin": "India",
+    "packaging": "Custom",
+    "moq": "Custom",
+    "tags": ["confectionery", "candy", "export"]
+  },
+  {
+    "id": "lollipop",
+    "name": "Lollipop",
+    "category": "Confectionery",
+    "summary": "Lollipop varieties available for bulk supply.",
+    "description": "Lollipop products supplied as per buyer requirements and packaging specs.",
+    "image": "/images/confectionery.png",
+    "origin": "India",
+    "packaging": "Custom",
+    "moq": "Custom",
+    "tags": ["confectionery", "lollipop", "export"]
+  },
+  {
+    "id": "jelly",
+    "name": "Jelly",
+    "category": "Confectionery",
+    "summary": "Jelly products available for export supply.",
+    "description": "Jelly products supplied as per buyer requirements and packaging specs.",
+    "image": "/images/confectionery.png",
+    "origin": "India",
+    "packaging": "Custom",
+    "moq": "Custom",
+    "tags": ["confectionery", "jelly", "export"]
   },
   {
     "id": "red-chilli",
@@ -21,103 +81,55 @@
     "origin": "India",
     "packaging": "10 kg, 25 kg, 50 kg bags",
     "moq": "5 MT",
-    "tags": ["whole", "spice", "export"]
+    "tags": ["spice", "chilli", "export"]
   },
   {
-    "id": "onion",
-    "name": "Onion",
-    "category": "Vegetables",
-    "summary": "Fresh onions with strong shelf life and uniform grading.",
-    "description": "We provide export quality onions with proper curing and packing for longer transit.",
-    "image": "/images/onion.png",
-    "origin": "India",
-    "packaging": "10 kg, 20 kg, 25 kg mesh bags",
-    "moq": "10 MT",
-    "tags": ["fresh", "export", "vegetable"]
-  },
-  {
-    "id": "makhana",
-    "name": "Makhana (Fox Nuts)",
-    "category": "Dry Fruits",
-    "summary": "Premium makhana with clean sorting and export packing.",
-    "description": "High quality fox nuts for retail and bulk buyers. Roasted and unroasted lots available on request.",
-    "image": "/images/makhana.png",
-    "origin": "India",
-    "packaging": "5 kg, 10 kg cartons",
-    "moq": "3 MT",
-    "tags": ["premium", "dry-fruit", "export"]
-  },
-  {
-    "id": "basmati-rice",
-    "name": "Basmati Rice",
-    "category": "Grains",
-    "summary": "Long grain basmati with strong aroma and clean polishing.",
-    "description": "We source and supply basmati rice with consistent grain length and low broken percentage.",
-    "image": "/images/basmati-rice.png",
+    "id": "coriander",
+    "name": "Coriander",
+    "category": "Spices",
+    "summary": "Aromatic coriander for whole spice buyers.",
+    "description": "Cleaned and graded coriander suitable for export and spice processing.",
+    "image": "/images/spices.png",
     "origin": "India",
     "packaging": "10 kg, 25 kg, 50 kg bags",
     "moq": "5 MT",
-    "tags": ["grain", "export", "premium"]
+    "tags": ["spice", "coriander", "export"]
   },
   {
-    "id": "non-basmati-rice",
-    "name": "Non-Basmati Rice",
-    "category": "Grains",
-    "summary": "Reliable non-basmati varieties for bulk buyers.",
-    "description": "Consistent quality non-basmati rice suitable for bulk shipments with clean grading and packing.",
-    "image": "/images/non-basmati-rice.png",
+    "id": "garlic",
+    "name": "Garlic",
+    "category": "Spices",
+    "summary": "Export grade garlic with strong aroma and uniform cloves.",
+    "description": "We supply well-sorted garlic suitable for export with moisture control, clean skins, and consistent sizing.",
+    "image": "/images/garlic.png",
     "origin": "India",
-    "packaging": "10 kg, 25 kg, 50 kg bags",
-    "moq": "10 MT",
-    "tags": ["grain", "bulk", "export"]
+    "packaging": "5 kg, 10 kg, 20 kg mesh bags",
+    "moq": "5 MT",
+    "tags": ["spice", "garlic", "export"]
   },
   {
     "id": "oregano",
     "name": "Oregano",
-    "category": "Herbs",
+    "category": "Spices",
     "summary": "Dried oregano with strong aroma and clean sorting.",
     "description": "Export-quality dried oregano for seasoning blends and food manufacturing.",
     "image": "/images/oregano.png",
     "origin": "India",
     "packaging": "1 kg, 5 kg, 10 kg bags",
     "moq": "1 MT",
-    "tags": ["herb", "seasoning", "export"]
+    "tags": ["spice", "oregano", "export"]
   },
   {
     "id": "seasoning-herbs",
     "name": "Seasoning Herbs",
-    "category": "Herbs",
+    "category": "Spices",
     "summary": "Mixed herbs and seasoning options on request.",
     "description": "Custom seasoning herb mixes for bulk buyers with consistent aroma and quality.",
     "image": "/images/seasoning-herbs.png",
     "origin": "India",
     "packaging": "1 kg, 5 kg, 10 kg bags",
     "moq": "1 MT",
-    "tags": ["herb", "blend", "seasoning"]
-  },
-  {
-    "id": "confectionery",
-    "name": "Confectionery",
-    "category": "Confectionery",
-    "summary": "Confectionery items available for export supply.",
-    "description": "Assorted confectionery products supplied as per buyer requirements and packaging specs.",
-    "image": "/images/confectionery.png",
-    "origin": "India",
-    "packaging": "Custom",
-    "moq": "Custom",
-    "tags": ["confectionery", "export", "custom"]
-  },
-  {
-    "id": "agricultural-products",
-    "name": "Other Agricultural Products",
-    "category": "Agricultural",
-    "summary": "Additional agricultural products available on request.",
-    "description": "We can source other agricultural products based on buyer requirements.",
-    "image": "/images/agricultural-products.png",
-    "origin": "India",
-    "packaging": "Custom",
-    "moq": "Custom",
-    "tags": ["agricultural", "custom", "export"]
+    "tags": ["spice", "blend", "seasoning"]
   },
   {
     "id": "whole-spices",
@@ -130,5 +142,41 @@
     "packaging": "10 kg, 25 kg, 50 kg bags",
     "moq": "5 MT",
     "tags": ["spice", "whole", "export"]
+  },
+  {
+    "id": "onion",
+    "name": "Onion",
+    "category": "Agricultural",
+    "summary": "Fresh onions with strong shelf life and uniform grading.",
+    "description": "We provide export quality onions with proper curing and packing for longer transit.",
+    "image": "/images/onion.png",
+    "origin": "India",
+    "packaging": "10 kg, 20 kg, 25 kg mesh bags",
+    "moq": "10 MT",
+    "tags": ["agricultural", "onion", "export"]
+  },
+  {
+    "id": "makhana",
+    "name": "Makhana (Fox Nuts)",
+    "category": "Agricultural",
+    "summary": "Premium makhana with clean sorting and export packing.",
+    "description": "High quality fox nuts for retail and bulk buyers. Roasted and unroasted lots available on request.",
+    "image": "/images/makhana.png",
+    "origin": "India",
+    "packaging": "5 kg, 10 kg cartons",
+    "moq": "3 MT",
+    "tags": ["agricultural", "makhana", "export"]
+  },
+  {
+    "id": "agricultural-products",
+    "name": "Other Agricultural Products",
+    "category": "Agricultural",
+    "summary": "Additional agricultural products available on request.",
+    "description": "We can source other agricultural products based on buyer requirements.",
+    "image": "/images/agricultural-products.png",
+    "origin": "India",
+    "packaging": "Custom",
+    "moq": "Custom",
+    "tags": ["agricultural", "custom", "export"]
   }
 ]

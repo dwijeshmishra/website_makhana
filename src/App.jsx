@@ -12,6 +12,23 @@ const DATA_URL = '/products.json'
 const isValidProductList = (data) =>
   Array.isArray(data) && data.every((item) => item && item.name)
 
+const mergeProducts = (stored, defaults) => {
+  if (!Array.isArray(stored) || !stored.length) {
+    return defaults
+  }
+
+  const storedIds = new Set(stored.map((item) => item?.id).filter(Boolean))
+  const merged = [...stored]
+
+  defaults.forEach((item) => {
+    if (item?.id && !storedIds.has(item.id)) {
+      merged.push(item)
+    }
+  })
+
+  return merged
+}
+
 function App() {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
@@ -31,14 +48,15 @@ function App() {
   }, [])
 
   useEffect(() => {
+    let storedProducts = null
     const stored = window.localStorage.getItem(STORAGE_KEY)
     if (stored) {
       try {
         const parsed = JSON.parse(stored)
         if (isValidProductList(parsed)) {
+          storedProducts = parsed
           setProducts(parsed)
           setLoading(false)
-          return
         }
       } catch (error) {
         console.warn('Stored products could not be parsed.')
@@ -46,7 +64,8 @@ function App() {
     }
 
     loadDefaultProducts().then((data) => {
-      setProducts(data)
+      const nextProducts = storedProducts ? mergeProducts(storedProducts, data) : data
+      setProducts(nextProducts)
       setLoading(false)
     })
   }, [loadDefaultProducts])
