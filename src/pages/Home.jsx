@@ -1,17 +1,51 @@
 import { useMemo, useState } from 'react'
 import ProductCard from '../components/ProductCard.jsx'
 
+const CATEGORY_ORDER = ['Rice', 'Confectionery', 'Spices', 'Agricultural']
+
+const SUBCATEGORY_ORDER = {
+  Rice: ['Basmati', 'Non-Basmati', 'Sella'],
+  Confectionery: ['Candy', 'Lollipop', 'Jelly'],
+  Spices: [
+    'Chilli',
+    'Coriander',
+    'Garlic',
+    'Oregano',
+    'Seasoning Herbs',
+    'Whole Spices',
+  ],
+  Agricultural: ['Onion', 'Makhana', 'Other'],
+}
+
 const Home = ({ products, loading }) => {
-  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [selectedCategory, setSelectedCategory] = useState(CATEGORY_ORDER[0])
+  const [selectedSubcategory, setSelectedSubcategory] = useState('')
   const [query, setQuery] = useState('')
-  const categoryOrder = ['Rice', 'Confectionery', 'Spices', 'Agricultural']
-  const categories = ['All', ...categoryOrder]
+  const categories = CATEGORY_ORDER
+
+  const subcategories = useMemo(() => {
+    const available = new Set(
+      products
+        .filter((product) => product.category === selectedCategory)
+        .map((product) => product.subcategory)
+        .filter(Boolean),
+    )
+    const ordered = SUBCATEGORY_ORDER[selectedCategory] || []
+    const result = ordered.filter((item) => available.has(item))
+    available.forEach((item) => {
+      if (!result.includes(item)) {
+        result.push(item)
+      }
+    })
+    return result
+  }, [products, selectedCategory])
 
   const filteredProducts = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase()
     return products.filter((product) => {
-      const matchesCategory =
-        selectedCategory === 'All' || product.category === selectedCategory
+      const matchesCategory = product.category === selectedCategory
+      const matchesSubcategory =
+        !selectedSubcategory || product.subcategory === selectedSubcategory
       const searchable = [
         product.name,
         product.summary,
@@ -24,38 +58,11 @@ const Home = ({ products, loading }) => {
         .toLowerCase()
       const matchesQuery =
         normalizedQuery.length === 0 || searchable.includes(normalizedQuery)
-      return matchesCategory && matchesQuery
+      return matchesCategory && matchesSubcategory && matchesQuery
     })
-  }, [products, selectedCategory, query])
+  }, [products, selectedCategory, selectedSubcategory, query])
 
   const galleryItems = products.slice(0, 6)
-
-  const groupedProducts = useMemo(() => {
-    const groups = filteredProducts.reduce((acc, product) => {
-      const category = product.category || 'Other'
-      const subcategory = product.subcategory || 'Other'
-      if (!acc[category]) {
-        acc[category] = {}
-      }
-      if (!acc[category][subcategory]) {
-        acc[category][subcategory] = []
-      }
-      acc[category][subcategory].push(product)
-      return acc
-    }, {})
-
-    const entries = Object.entries(groups)
-
-    entries.sort(([a], [b]) => {
-      const indexA = categoryOrder.indexOf(a)
-      const indexB = categoryOrder.indexOf(b)
-      const aOrder = indexA === -1 ? Number.MAX_SAFE_INTEGER : indexA
-      const bOrder = indexB === -1 ? Number.MAX_SAFE_INTEGER : indexB
-      return aOrder - bOrder
-    })
-
-    return entries
-  }, [filteredProducts])
 
   return (
     <>
@@ -118,65 +125,77 @@ const Home = ({ products, loading }) => {
               </p>
             </div>
             <div className="product-toolbar">
-              <div className="search-input">
-                <input
-                  type="text"
-                  placeholder="Search products"
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                />
+              <div className="toolbar-row">
+                <div className="category-tabs">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      type="button"
+                      className={`chip ${
+                        category === selectedCategory ? 'active' : ''
+                      }`}
+                      onClick={() => {
+                        setSelectedCategory(category)
+                        setSelectedSubcategory('')
+                        setQuery('')
+                      }}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="category-tabs">
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    type="button"
-                    className={`chip ${
-                      category === selectedCategory ? 'active' : ''
-                    }`}
-                    onClick={() => setSelectedCategory(category)}
-                  >
-                    {category}
-                  </button>
-                ))}
+              <div className="toolbar-row">
+                <div className="subcategory-tabs">
+                  {subcategories.map((subcategory) => (
+                    <button
+                      key={subcategory}
+                      type="button"
+                      className={`chip ${
+                        subcategory === selectedSubcategory ? 'active' : ''
+                      }`}
+                      onClick={() => setSelectedSubcategory(subcategory)}
+                    >
+                      {subcategory}
+                    </button>
+                  ))}
+                </div>
+                <div className="search-input">
+                  <input
+                    type="text"
+                    placeholder="Search products"
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
+                  />
+                </div>
+                {selectedSubcategory ? (
+                  <p className="product-count">
+                    Showing {filteredProducts.length} product
+                    {filteredProducts.length === 1 ? '' : 's'}
+                  </p>
+                ) : (
+                  <p className="product-count">Select a subcategory</p>
+                )}
               </div>
-              <p className="product-count">
-                Showing {filteredProducts.length} product
-                {filteredProducts.length === 1 ? '' : 's'}
-              </p>
             </div>
             {loading ? (
               <p>Loading products...</p>
             ) : (
               <>
-                {groupedProducts.length ? (
-                  groupedProducts.map(([category, subgroups]) => {
-                    if (selectedCategory !== 'All' && category !== selectedCategory) {
-                      return null
-                    }
-
-                    return (
-                      <div className="category-section" key={category}>
-                        <div className="category-title">
-                          <h3>{category}</h3>
-                        </div>
-                        {Object.entries(subgroups).map(([subcategory, items]) => (
-                          <div className="subcategory-section" key={subcategory}>
-                            <div className="subcategory-title">
-                              <h4>{subcategory}</h4>
-                            </div>
-                            <div className="product-grid">
-                              {items.map((product) => (
-                                <ProductCard key={product.id} product={product} />
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )
-                  })
+                {selectedSubcategory ? (
+                  <div className="product-grid">
+                    {filteredProducts.length ? (
+                      filteredProducts.map((product) => (
+                        <ProductCard key={product.id} product={product} />
+                      ))
+                    ) : (
+                      <p>No matching products found.</p>
+                    )}
+                  </div>
                 ) : (
-                  <p>No matching products found.</p>
+                  <p className="product-hint">
+                    Choose a subcategory to view available products.
+                  </p>
                 )}
               </>
             )}
@@ -208,8 +227,8 @@ const Home = ({ products, loading }) => {
               </div>
               <div className="step-card">
                 <p className="step-number">03</p>
-                <h3>Dispatch & documentation</h3>
-                <p>We manage packing, labeling, and export paperwork.</p>
+                <h3>Dispatch & logistics</h3>
+                <p>We manage packing, labeling, and shipment scheduling.</p>
               </div>
             </div>
           </div>

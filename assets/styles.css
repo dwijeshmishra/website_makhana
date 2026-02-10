@@ -354,12 +354,17 @@ img {
 }
 
 .product-toolbar {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.toolbar-row {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
 }
 
 .search-input {
@@ -371,7 +376,8 @@ img {
   background: var(--surface);
 }
 
-.category-tabs {
+.category-tabs,
+.subcategory-tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -402,6 +408,15 @@ img {
 .product-count {
   color: var(--muted);
   margin: 0;
+}
+
+.product-hint {
+  margin: 0;
+  color: var(--muted);
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--soft);
+  border: 1px dashed var(--border);
 }
 
 .category-section {
