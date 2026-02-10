@@ -17,8 +17,20 @@ const mergeProducts = (stored, defaults) => {
     return defaults
   }
 
-  const storedIds = new Set(stored.map((item) => item?.id).filter(Boolean))
-  const merged = [...stored]
+  const defaultsById = new Map(
+    defaults.map((item) => [item?.id, item]).filter(([id]) => id),
+  )
+
+  const mergedStored = stored.map((item) => {
+    if (!item?.id || !defaultsById.has(item.id)) {
+      return item
+    }
+    const fallback = defaultsById.get(item.id)
+    return { ...fallback, ...item }
+  })
+
+  const storedIds = new Set(mergedStored.map((item) => item?.id).filter(Boolean))
+  const merged = [...mergedStored]
 
   defaults.forEach((item) => {
     if (item?.id && !storedIds.has(item.id)) {
