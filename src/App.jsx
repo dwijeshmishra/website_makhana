@@ -26,7 +26,16 @@ const mergeProducts = (stored, defaults) => {
       return item
     }
     const fallback = defaultsById.get(item.id)
-    return { ...fallback, ...item }
+    const resolvedImage =
+      !item.image ||
+      item.image === '/images/placeholder.svg' ||
+      (item.image === '/images/confectionery.png' &&
+        fallback.image &&
+        fallback.image !== item.image)
+        ? fallback.image
+        : item.image
+
+    return { ...fallback, ...item, image: resolvedImage }
   })
 
   const storedIds = new Set(mergedStored.map((item) => item?.id).filter(Boolean))
