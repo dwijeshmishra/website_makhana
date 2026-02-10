@@ -84,16 +84,14 @@ img {
   gap: 14px;
 }
 
-.brand-mark {
-  display: inline-flex;
-  width: 42px;
-  height: 42px;
+.brand-logo {
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--primary-bright));
-  color: #ffffff;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
+  border: 2px solid rgba(15, 118, 110, 0.3);
+  object-fit: cover;
+  background: #ffffff;
+  box-shadow: 0 8px 16px rgba(12, 24, 12, 0.12);
 }
 
 .brand-name {
@@ -854,6 +852,27 @@ img {
 .highlight-title {
   margin: 0 0 6px;
   font-weight: 700;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.contact-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 16px;
+}
+
+.contact-form .full {
+  grid-column: 1 / -1;
 }
 
 .contact-details {
