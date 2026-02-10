@@ -26,7 +26,7 @@ const CATEGORY_IMAGES = {
 
 const Home = ({ products, loading }) => {
   const [selectedCategory, setSelectedCategory] = useState('')
-  const [selectedSubcategory, setSelectedSubcategory] = useState('')
+  const [selectedSubcategory, setSelectedSubcategory] = useState('All')
   const [query, setQuery] = useState('')
   const categories = CATEGORY_ORDER
 
@@ -44,7 +44,7 @@ const Home = ({ products, loading }) => {
         result.push(item)
       }
     })
-    return result
+    return ['All', ...result]
   }, [products, selectedCategory])
 
   const filteredProducts = useMemo(() => {
@@ -54,7 +54,8 @@ const Home = ({ products, loading }) => {
         ? product.category === selectedCategory
         : false
       const matchesSubcategory =
-        !selectedSubcategory || product.subcategory === selectedSubcategory
+        selectedSubcategory === 'All' ||
+        product.subcategory === selectedSubcategory
       const searchable = [
         product.name,
         product.summary,
@@ -143,7 +144,7 @@ const Home = ({ products, loading }) => {
                   }`}
                   onClick={() => {
                     setSelectedCategory(category)
-                    setSelectedSubcategory('')
+                    setSelectedSubcategory('All')
                     setQuery('')
                   }}
                 >
@@ -170,7 +171,7 @@ const Home = ({ products, loading }) => {
                       }`}
                       onClick={() => {
                         setSelectedCategory(category)
-                        setSelectedSubcategory('')
+                        setSelectedSubcategory('All')
                         setQuery('')
                       }}
                     >
@@ -203,14 +204,10 @@ const Home = ({ products, loading }) => {
                       onChange={(event) => setQuery(event.target.value)}
                     />
                   </div>
-                  {selectedSubcategory ? (
-                    <p className="product-count">
-                      Showing {filteredProducts.length} product
-                      {filteredProducts.length === 1 ? '' : 's'}
-                    </p>
-                  ) : (
-                    <p className="product-count">Select a subcategory</p>
-                  )}
+                  <p className="product-count">
+                    Showing {filteredProducts.length} product
+                    {filteredProducts.length === 1 ? '' : 's'}
+                  </p>
                 </div>
               ) : null}
             </div>
@@ -218,7 +215,7 @@ const Home = ({ products, loading }) => {
               <p>Loading products...</p>
             ) : (
               <>
-                {selectedSubcategory ? (
+                {selectedCategory ? (
                   <div className="product-grid">
                     {filteredProducts.length ? (
                       filteredProducts.map((product) => (
@@ -230,9 +227,7 @@ const Home = ({ products, loading }) => {
                   </div>
                 ) : (
                   <p className="product-hint">
-                    {selectedCategory
-                      ? 'Choose a subcategory to view available products.'
-                      : 'Select a category to view subcategories.'}
+                    Select a category to view products.
                   </p>
                 )}
               </>
