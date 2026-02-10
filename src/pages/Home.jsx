@@ -107,8 +107,8 @@ const Home = ({ products, loading }) => {
                   <p className="stat-label">Packaging options</p>
                 </div>
                 <div className="stat-card">
-                  <p className="stat-value">Export</p>
-                  <p className="stat-label">Documentation help</p>
+                  <p className="stat-value">On-time</p>
+                  <p className="stat-label">Dispatch support</p>
                 </div>
               </div>
             </div>
