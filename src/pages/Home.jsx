@@ -17,8 +17,15 @@ const SUBCATEGORY_ORDER = {
   Agricultural: ['Onion', 'Makhana', 'Other'],
 }
 
+const CATEGORY_IMAGES = {
+  Rice: '/images/basmati-rice.png',
+  Confectionery: '/images/confectionery.png',
+  Spices: '/images/spices.png',
+  Agricultural: '/images/agricultural-products.png',
+}
+
 const Home = ({ products, loading }) => {
-  const [selectedCategory, setSelectedCategory] = useState(CATEGORY_ORDER[0])
+  const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedSubcategory, setSelectedSubcategory] = useState('')
   const [query, setQuery] = useState('')
   const categories = CATEGORY_ORDER
@@ -43,7 +50,9 @@ const Home = ({ products, loading }) => {
   const filteredProducts = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase()
     return products.filter((product) => {
-      const matchesCategory = product.category === selectedCategory
+      const matchesCategory = selectedCategory
+        ? product.category === selectedCategory
+        : false
       const matchesSubcategory =
         !selectedSubcategory || product.subcategory === selectedSubcategory
       const searchable = [
@@ -124,6 +133,31 @@ const Home = ({ products, loading }) => {
                 us for the latest quote.
               </p>
             </div>
+            <div className="category-grid">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  type="button"
+                  className={`category-card ${
+                    category === selectedCategory ? 'active' : ''
+                  }`}
+                  onClick={() => {
+                    setSelectedCategory(category)
+                    setSelectedSubcategory('')
+                    setQuery('')
+                  }}
+                >
+                  <img
+                    src={CATEGORY_IMAGES[category]}
+                    alt={`${category} category`}
+                  />
+                  <div className="category-card-body">
+                    <h3>{category}</h3>
+                    <p>Explore {category.toLowerCase()} products</p>
+                  </div>
+                </button>
+              ))}
+            </div>
             <div className="product-toolbar">
               <div className="toolbar-row">
                 <div className="category-tabs">
@@ -145,38 +179,40 @@ const Home = ({ products, loading }) => {
                   ))}
                 </div>
               </div>
-              <div className="toolbar-row">
-                <div className="subcategory-tabs">
-                  {subcategories.map((subcategory) => (
-                    <button
-                      key={subcategory}
-                      type="button"
-                      className={`chip ${
-                        subcategory === selectedSubcategory ? 'active' : ''
-                      }`}
-                      onClick={() => setSelectedSubcategory(subcategory)}
-                    >
-                      {subcategory}
-                    </button>
-                  ))}
+              {selectedCategory ? (
+                <div className="toolbar-row">
+                  <div className="subcategory-tabs">
+                    {subcategories.map((subcategory) => (
+                      <button
+                        key={subcategory}
+                        type="button"
+                        className={`chip ${
+                          subcategory === selectedSubcategory ? 'active' : ''
+                        }`}
+                        onClick={() => setSelectedSubcategory(subcategory)}
+                      >
+                        {subcategory}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="search-input">
+                    <input
+                      type="text"
+                      placeholder="Search products"
+                      value={query}
+                      onChange={(event) => setQuery(event.target.value)}
+                    />
+                  </div>
+                  {selectedSubcategory ? (
+                    <p className="product-count">
+                      Showing {filteredProducts.length} product
+                      {filteredProducts.length === 1 ? '' : 's'}
+                    </p>
+                  ) : (
+                    <p className="product-count">Select a subcategory</p>
+                  )}
                 </div>
-                <div className="search-input">
-                  <input
-                    type="text"
-                    placeholder="Search products"
-                    value={query}
-                    onChange={(event) => setQuery(event.target.value)}
-                  />
-                </div>
-                {selectedSubcategory ? (
-                  <p className="product-count">
-                    Showing {filteredProducts.length} product
-                    {filteredProducts.length === 1 ? '' : 's'}
-                  </p>
-                ) : (
-                  <p className="product-count">Select a subcategory</p>
-                )}
-              </div>
+              ) : null}
             </div>
             {loading ? (
               <p>Loading products...</p>
@@ -194,7 +230,9 @@ const Home = ({ products, loading }) => {
                   </div>
                 ) : (
                   <p className="product-hint">
-                    Choose a subcategory to view available products.
+                    {selectedCategory
+                      ? 'Choose a subcategory to view available products.'
+                      : 'Select a category to view subcategories.'}
                   </p>
                 )}
               </>
