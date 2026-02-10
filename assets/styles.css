@@ -224,6 +224,7 @@ img {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
+  align-items: stretch;
 }
 
 .stat-card {
@@ -233,6 +234,9 @@ img {
   padding: 14px 16px;
   box-shadow: var(--shadow-soft);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: grid;
+  gap: 6px;
+  min-height: 92px;
 }
 
 .stat-card:hover {
