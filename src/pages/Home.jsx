@@ -73,6 +73,16 @@ const Home = ({ products, loading }) => {
   }, [products, selectedCategory, selectedSubcategory, query])
 
   const galleryItems = products.slice(0, 6)
+  const categoryCounts = useMemo(() => {
+    return products.reduce((acc, product) => {
+      const category = product.category
+      if (!category) {
+        return acc
+      }
+      acc[category] = (acc[category] || 0) + 1
+      return acc
+    }, {})
+  }, [products])
 
   return (
     <>
@@ -153,8 +163,13 @@ const Home = ({ products, loading }) => {
                     alt={`${category} category`}
                   />
                   <div className="category-card-body">
-                    <h3>{category}</h3>
-                    <p>Explore {category.toLowerCase()} products</p>
+                    <div>
+                      <h3>{category}</h3>
+                      <p>Explore {category.toLowerCase()} products</p>
+                    </div>
+                    <span className="category-pill">
+                      {categoryCounts[category] || 0} items
+                    </span>
                   </div>
                 </button>
               ))}
