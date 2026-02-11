@@ -29,6 +29,7 @@ const Home = ({ products, loading }) => {
   const [selectedSubcategory, setSelectedSubcategory] = useState('All')
   const [query, setQuery] = useState('')
   const productsRef = useRef(null)
+  const filtersRef = useRef(null)
   const categories = CATEGORY_ORDER
 
   const subcategories = useMemo(() => {
@@ -94,8 +95,9 @@ const Home = ({ products, loading }) => {
     setSelectedSubcategory('All')
     setQuery('')
 
-    if (productsRef.current) {
-      productsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const target = filtersRef.current || productsRef.current
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
 
@@ -156,11 +158,16 @@ const Home = ({ products, loading }) => {
             <div className="section-header">
               <div>
                 <p className="eyebrow">Our products</p>
-                <h2>Explore our export catalog</h2>
+                <h2>
+                  {selectedCategory
+                    ? `${selectedCategory} products`
+                    : 'Explore our export catalog'}
+                </h2>
               </div>
               <p className="section-subtitle">
-                Pricing depends on grade, packaging, and shipment size. Contact
-                us for the latest quote.
+                {selectedCategory
+                  ? `Select a subcategory or search within ${selectedCategory}.`
+                  : 'Pricing depends on grade, packaging, and shipment size. Contact us for the latest quote.'}
               </p>
             </div>
             <div className="category-grid">
@@ -190,7 +197,7 @@ const Home = ({ products, loading }) => {
                 </button>
               ))}
             </div>
-            <div className="product-toolbar">
+            <div className="product-toolbar" ref={filtersRef}>
               <div className="toolbar-row">
                 <div className="category-tabs">
                   {categories.map((category) => (
