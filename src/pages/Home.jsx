@@ -45,8 +45,12 @@ const Home = ({ products, loading }) => {
         result.push(item)
       }
     })
-    return ['All', ...result]
+    return result
   }, [products, selectedCategory])
+
+  const subcategoryTabs = useMemo(() => {
+    return ['All', ...subcategories]
+  }, [subcategories])
 
   const filteredProducts = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase()
@@ -86,8 +90,20 @@ const Home = ({ products, loading }) => {
   }, [products])
 
   const handleCategorySelect = (category) => {
+    const available = new Set(
+      products
+        .filter((product) => product.category === category)
+        .map((product) => product.subcategory)
+        .filter(Boolean),
+    )
+    const ordered = SUBCATEGORY_ORDER[category] || []
+    const firstSubcategory =
+      ordered.find((item) => available.has(item)) ||
+      Array.from(available)[0] ||
+      'All'
+
     setSelectedCategory(category)
-    setSelectedSubcategory('All')
+    setSelectedSubcategory(firstSubcategory)
     setQuery('')
 
     if (window.matchMedia('(max-width: 900px)').matches && productsRef.current) {
@@ -200,8 +216,8 @@ const Home = ({ products, loading }) => {
               </div>
               {selectedCategory ? (
                 <div className="toolbar-row">
-                  <div className="subcategory-tabs">
-                    {subcategories.map((subcategory) => (
+                <div className="subcategory-tabs">
+                  {subcategoryTabs.map((subcategory) => (
                       <button
                         key={subcategory}
                         type="button"
