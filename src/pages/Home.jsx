@@ -153,6 +153,32 @@ const Home = ({ products, loading }) => {
           </div>
         </section>
 
+        <section className="trust-strip">
+          <div className="container trust-grid">
+            <div className="trust-item">
+              <span className="trust-icon">QC</span>
+              <div>
+                <p className="trust-title">Quality checked</p>
+                <p className="trust-copy">Consistent grading before dispatch.</p>
+              </div>
+            </div>
+            <div className="trust-item">
+              <span className="trust-icon">PK</span>
+              <div>
+                <p className="trust-title">Custom packing</p>
+                <p className="trust-copy">Flexible sizes and branding.</p>
+              </div>
+            </div>
+            <div className="trust-item">
+              <span className="trust-icon">GL</span>
+              <div>
+                <p className="trust-title">Global supply</p>
+                <p className="trust-copy">Export-ready lots, on time.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="products" className="section section-products" ref={productsRef}>
           <div className="container">
             <div className="section-header">
