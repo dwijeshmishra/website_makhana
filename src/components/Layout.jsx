@@ -61,6 +61,15 @@ const Layout = () => {
         WhatsApp
       </a>
     </div>
+    <a
+      className="whatsapp-float"
+      href="https://wa.me/919826015502"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Chat on WhatsApp"
+    >
+      WA
+    </a>
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import ProductCard from '../components/ProductCard.jsx'
 
 const CATEGORY_ORDER = ['Rice', 'Confectionery', 'Spices', 'Agricultural']
@@ -24,10 +24,39 @@ const CATEGORY_IMAGES = {
   Agricultural: '/images/agricultural-products.png',
 }
 
+const CATEGORY_ICONS = {
+  Rice: 'RC',
+  Confectionery: 'CF',
+  Spices: 'SP',
+  Agricultural: 'AG',
+}
+
+const HERO_SLIDES = [
+  {
+    title: 'Export-ready rice lots',
+    description: 'Basmati, non-basmati, and sella options for bulk buyers.',
+    image: '/images/basmati-rice.png',
+    badge: 'Rice',
+  },
+  {
+    title: 'Whole spices for global buyers',
+    description: 'Chilli, coriander, garlic, oregano, and more.',
+    image: '/images/spices.png',
+    badge: 'Spices',
+  },
+  {
+    title: 'Confectionery supply',
+    description: 'Candy, lollipop, and jelly assortments on request.',
+    image: '/images/confectionery.png',
+    badge: 'Confectionery',
+  },
+]
+
 const Home = ({ products, loading }) => {
   const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedSubcategory, setSelectedSubcategory] = useState('All')
   const [query, setQuery] = useState('')
+  const [activeSlide, setActiveSlide] = useState(0)
   const productsRef = useRef(null)
   const filtersRef = useRef(null)
   const categories = CATEGORY_ORDER
@@ -101,6 +130,13 @@ const Home = ({ products, loading }) => {
     }
   }
 
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length)
+    }, 4500)
+    return () => window.clearInterval(interval)
+  }, [])
+
   return (
     <>
       <main>
@@ -144,16 +180,40 @@ const Home = ({ products, loading }) => {
               </div>
             </div>
             <div className="hero-visual">
-              <img src="/images/spices.png" alt="Export spice assortment" />
-              <div className="hero-badges">
-                <span className="hero-badge">Export-ready lots</span>
-                <span className="hero-badge secondary">Custom packaging</span>
+              <div className="hero-slider">
+                {HERO_SLIDES.map((slide, index) => (
+                  <div
+                    key={slide.title}
+                    className={`hero-slide ${
+                      index === activeSlide ? 'active' : ''
+                    }`}
+                    aria-hidden={index !== activeSlide}
+                  >
+                    <img src={slide.image} alt={slide.title} />
+                    <span className="hero-slide-badge">{slide.badge}</span>
+                    <div className="hero-slide-content">
+                      <p className="hero-slide-title">{slide.title}</p>
+                      <p className="hero-slide-copy">{slide.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="hero-dots">
+                {HERO_SLIDES.map((slide, index) => (
+                  <button
+                    key={slide.title}
+                    type="button"
+                    className={`hero-dot ${index === activeSlide ? 'active' : ''}`}
+                    onClick={() => setActiveSlide(index)}
+                    aria-label={`Show slide ${index + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        <section className="trust-strip">
+        <section className="trust-strip section-divider">
           <div className="container trust-grid">
             <div className="trust-item">
               <span className="trust-icon">QC</span>
@@ -211,6 +271,7 @@ const Home = ({ products, loading }) => {
                     alt={`${category} category`}
                   />
                   <div className="category-card-body">
+                    <span className="category-icon">{CATEGORY_ICONS[category]}</span>
                     <div>
                       <h3>{category}</h3>
                       <p>Explore {category.toLowerCase()} products</p>
@@ -295,7 +356,7 @@ const Home = ({ products, loading }) => {
           </div>
         </section>
 
-        <section className="section light" id="process">
+        <section className="section light section-divider" id="process">
           <div className="container">
             <div className="section-header">
               <div>
@@ -327,7 +388,7 @@ const Home = ({ products, loading }) => {
           </div>
         </section>
 
-        <section className="section accent">
+        <section className="section accent section-divider">
           <div className="container">
             <div className="section-header">
               <div>
@@ -355,7 +416,7 @@ const Home = ({ products, loading }) => {
           </div>
         </section>
 
-        <section id="gallery" className="section">
+        <section id="gallery" className="section section-divider">
           <div className="container">
             <div className="section-header">
               <div>
@@ -381,7 +442,7 @@ const Home = ({ products, loading }) => {
           </div>
         </section>
 
-        <section id="contact" className="section">
+        <section id="contact" className="section section-divider">
           <div className="container">
             <div className="section-header">
               <div>
