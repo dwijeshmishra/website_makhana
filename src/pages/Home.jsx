@@ -119,7 +119,11 @@ const Home = ({ products, loading }) => {
             <div className="hero-text">
               <div>
                 <p className="eyebrow">Reliable sourcing. Consistent quality.</p>
-                <h1>Pure, fresh, and export-ready products for global buyers.</h1>
+                <h1>
+                  Pure, fresh, and{' '}
+                  <span className="title-accent">export-ready</span> products for
+                  global buyers.
+                </h1>
                 <p className="hero-copy">
                   We supply garlic, red chilli, onion, makhana, rice, and a wide
                   range of spices with strict quality control and export
@@ -159,7 +163,7 @@ const Home = ({ products, loading }) => {
           </div>
         </section>
 
-        <section id="products" className="section" ref={productsRef}>
+        <section id="products" className="section section-products" ref={productsRef}>
           <div className="container">
             <div className="section-header">
               <div>
@@ -189,6 +193,7 @@ const Home = ({ products, loading }) => {
                     <div>
                       <h3>{category}</h3>
                       <p>Explore {category.toLowerCase()} products</p>
+                      <span className="category-link">View category →</span>
                     </div>
                     <span className="category-pill">
                       {categoryCounts[category] || 0} items

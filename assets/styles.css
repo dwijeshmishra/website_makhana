@@ -207,6 +207,12 @@ img {
   letter-spacing: -0.03em;
 }
 
+.title-accent {
+  background: linear-gradient(135deg, var(--primary), var(--primary-bright));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
 .hero-copy {
   color: var(--muted);
   margin-bottom: 22px;
@@ -324,6 +330,28 @@ img {
   scroll-margin-top: 90px;
 }
 
+.section-products {
+  background: linear-gradient(180deg, #f7f9fb 0%, #ffffff 60%);
+  position: relative;
+}
+
+.section-products::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(15, 118, 110, 0.08),
+    transparent 45%
+  );
+  pointer-events: none;
+}
+
+.section-products > .container {
+  position: relative;
+  z-index: 1;
+}
+
 .section.light {
   background: var(--surface);
 }
@@ -408,6 +436,16 @@ img {
   font-size: 0.9rem;
 }
 
+.category-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 0.85rem;
+}
+
 .category-pill {
   display: inline-flex;
   align-items: center;
@@ -475,6 +513,9 @@ img {
 .search-input input {
   width: 100%;
   background: var(--surface);
+  border-radius: 999px;
+  padding: 12px 16px;
+  box-shadow: 0 8px 16px rgba(12, 24, 12, 0.08);
 }
 
 .category-tabs,
@@ -497,6 +538,7 @@ img {
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s ease;
+  box-shadow: 0 6px 12px rgba(12, 24, 12, 0.08);
 }
 
 .chip:hover {
