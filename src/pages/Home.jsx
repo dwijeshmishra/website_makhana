@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import ProductCard from '../components/ProductCard.jsx'
 
 const CATEGORY_ORDER = ['Rice', 'Confectionery', 'Spices', 'Agricultural']
@@ -28,6 +28,7 @@ const Home = ({ products, loading }) => {
   const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedSubcategory, setSelectedSubcategory] = useState('All')
   const [query, setQuery] = useState('')
+  const productsRef = useRef(null)
   const categories = CATEGORY_ORDER
 
   const subcategories = useMemo(() => {
@@ -84,6 +85,16 @@ const Home = ({ products, loading }) => {
     }, {})
   }, [products])
 
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category)
+    setSelectedSubcategory('All')
+    setQuery('')
+
+    if (window.matchMedia('(max-width: 900px)').matches && productsRef.current) {
+      productsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   return (
     <>
       <main>
@@ -132,7 +143,7 @@ const Home = ({ products, loading }) => {
           </div>
         </section>
 
-        <section id="products" className="section">
+        <section id="products" className="section" ref={productsRef}>
           <div className="container">
             <div className="section-header">
               <div>
@@ -152,11 +163,7 @@ const Home = ({ products, loading }) => {
                   className={`category-card ${
                     category === selectedCategory ? 'active' : ''
                   }`}
-                  onClick={() => {
-                    setSelectedCategory(category)
-                    setSelectedSubcategory('All')
-                    setQuery('')
-                  }}
+                  onClick={() => handleCategorySelect(category)}
                 >
                   <img
                     src={CATEGORY_IMAGES[category]}
@@ -184,11 +191,7 @@ const Home = ({ products, loading }) => {
                       className={`chip ${
                         category === selectedCategory ? 'active' : ''
                       }`}
-                      onClick={() => {
-                        setSelectedCategory(category)
-                        setSelectedSubcategory('All')
-                        setQuery('')
-                      }}
+                      onClick={() => handleCategorySelect(category)}
                     >
                       {category}
                     </button>
@@ -337,50 +340,68 @@ const Home = ({ products, loading }) => {
         </section>
 
         <section id="contact" className="section">
-          <div className="container contact-card">
-            <div>
-              <p className="eyebrow">Contact us</p>
-              <h2>Get pricing and MOQ details</h2>
-              <p>
-                Send your requirements and destination port. Our team will share
-                the latest quote and availability.
+          <div className="container">
+            <div className="section-header">
+              <div>
+                <p className="eyebrow">Contact us</p>
+                <h2>Send your requirement</h2>
+              </div>
+              <p className="section-subtitle">
+                Have a question or need a quote? Get in touch — we are here to
+                help.
               </p>
-              <div className="contact-highlights">
-                <div>
-                  <p className="highlight-title">Fast response</p>
-                  <p>Quotes within 24 hours for standard inquiries.</p>
-                </div>
-                <div>
-                  <p className="highlight-title">Export support</p>
-                  <p>We assist with documents and compliance.</p>
-                </div>
-              </div>
             </div>
-            <div className="contact-details">
-              <div>
-                <p className="contact-label">Email</p>
-                <a href="mailto:info@samarthoverseasindia.com">
-                  info@samarthoverseasindia.com
-                </a>
-              </div>
-              <div>
-                <p className="contact-label">Phone</p>
-                <a href="tel:+919826015502">+91 98260 15502</a>
-              </div>
-              <div>
-                <p className="contact-label">Business inquiry</p>
-                <p>Reply within 24 hours with pricing details.</p>
-              </div>
-              <div className="detail-actions">
-                <a
-                  className="btn primary"
-                  href="mailto:info@samarthoverseasindia.com"
-                >
-                  Send requirement
-                </a>
-                <a className="btn ghost" href="tel:+919826015502">
-                  Call now
-                </a>
+            <div className="contact-grid">
+              <form
+                className="contact-form"
+                action="mailto:info@samarthoverseasindia.com"
+              >
+                <label>
+                  Name
+                  <input type="text" name="name" placeholder="Your name" />
+                </label>
+                <label>
+                  Email
+                  <input type="email" name="email" placeholder="your@email.com" />
+                </label>
+                <label className="full">
+                  Message
+                  <textarea
+                    name="message"
+                    rows="5"
+                    placeholder="Tell us your requirement"
+                  ></textarea>
+                </label>
+                <button className="btn primary" type="submit">
+                  Send Message
+                </button>
+              </form>
+              <div className="contact-details">
+                <div>
+                  <p className="contact-label">Email</p>
+                  <a href="mailto:info@samarthoverseasindia.com">
+                    info@samarthoverseasindia.com
+                  </a>
+                </div>
+                <div>
+                  <p className="contact-label">Phone</p>
+                  <a href="tel:+919826015502">+91 98260 15502</a>
+                </div>
+                <div>
+                  <p className="contact-label">Business inquiry</p>
+                  <p>Reply within 24 hours with pricing details.</p>
+                </div>
+                <div className="detail-actions">
+                  <a
+                    className="btn primary"
+                    href="mailto:info@samarthoverseasindia.com"
+                  >
+                    Send requirement
+                  </a>
+                  <a className="btn ghost" href="tel:+919826015502">
+                    Call now
+                  </a>
+                </div>
               </div>
             </div>
           </div>

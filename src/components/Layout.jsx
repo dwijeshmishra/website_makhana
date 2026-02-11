@@ -13,7 +13,11 @@ const Layout = () => {
     <header className="site-header">
       <div className="container header-content">
         <div className="brand">
-          <span className="brand-mark">SO</span>
+          <img
+            className="brand-logo"
+            src="/images/logo.jpg"
+            alt="Samarth Overseas logo"
+          />
           <div>
             <p className="brand-name">Samarth Overseas</p>
             <p className="brand-tagline">Export Quality Agro Products</p>
