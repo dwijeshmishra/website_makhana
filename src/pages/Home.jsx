@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import ProductCard from '../components/ProductCard.jsx'
 
 const CATEGORY_ORDER = ['Rice', 'Confectionery', 'Spices', 'Agricultural']
@@ -28,6 +28,7 @@ const Home = ({ products, loading }) => {
   const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedSubcategory, setSelectedSubcategory] = useState('All')
   const [query, setQuery] = useState('')
+  const productsRef = useRef(null)
   const categories = CATEGORY_ORDER
 
   const subcategories = useMemo(() => {
@@ -84,6 +85,16 @@ const Home = ({ products, loading }) => {
     }, {})
   }, [products])
 
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category)
+    setSelectedSubcategory('All')
+    setQuery('')
+
+    if (window.matchMedia('(max-width: 900px)').matches && productsRef.current) {
+      productsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   return (
     <>
       <main>
@@ -132,7 +143,7 @@ const Home = ({ products, loading }) => {
           </div>
         </section>
 
-        <section id="products" className="section">
+        <section id="products" className="section" ref={productsRef}>
           <div className="container">
             <div className="section-header">
               <div>
@@ -152,11 +163,7 @@ const Home = ({ products, loading }) => {
                   className={`category-card ${
                     category === selectedCategory ? 'active' : ''
                   }`}
-                  onClick={() => {
-                    setSelectedCategory(category)
-                    setSelectedSubcategory('All')
-                    setQuery('')
-                  }}
+                  onClick={() => handleCategorySelect(category)}
                 >
                   <img
                     src={CATEGORY_IMAGES[category]}
@@ -184,11 +191,7 @@ const Home = ({ products, loading }) => {
                       className={`chip ${
                         category === selectedCategory ? 'active' : ''
                       }`}
-                      onClick={() => {
-                        setSelectedCategory(category)
-                        setSelectedSubcategory('All')
-                        setQuery('')
-                      }}
+                      onClick={() => handleCategorySelect(category)}
                     >
                       {category}
                     </button>
