@@ -90,23 +90,11 @@ const Home = ({ products, loading }) => {
   }, [products])
 
   const handleCategorySelect = (category) => {
-    const available = new Set(
-      products
-        .filter((product) => product.category === category)
-        .map((product) => product.subcategory)
-        .filter(Boolean),
-    )
-    const ordered = SUBCATEGORY_ORDER[category] || []
-    const firstSubcategory =
-      ordered.find((item) => available.has(item)) ||
-      Array.from(available)[0] ||
-      'All'
-
     setSelectedCategory(category)
-    setSelectedSubcategory(firstSubcategory)
+    setSelectedSubcategory('All')
     setQuery('')
 
-    if (window.matchMedia('(max-width: 900px)').matches && productsRef.current) {
+    if (productsRef.current) {
       productsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
