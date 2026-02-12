@@ -18,10 +18,10 @@ const SUBCATEGORY_ORDER = {
 }
 
 const CATEGORY_IMAGES = {
-  Rice: '/images/basmati-rice.png',
-  Confectionery: '/images/confectionery.png',
-  Spices: '/images/spices.png',
-  Agricultural: '/images/agricultural-products.png',
+  Rice: '/images/basmati-rice.webp',
+  Confectionery: '/images/confectionery.webp',
+  Spices: '/images/spices.webp',
+  Agricultural: '/images/agricultural-products.webp',
 }
 
 const CATEGORY_ICONS = {
@@ -35,19 +35,19 @@ const HERO_SLIDES = [
   {
     title: 'Export-ready rice lots',
     description: 'Basmati, non-basmati, and sella options for bulk buyers.',
-    image: '/images/basmati-rice.png',
+    image: '/images/basmati-rice.webp',
     badge: 'Rice',
   },
   {
     title: 'Whole spices for global buyers',
     description: 'Chilli, coriander, garlic, oregano, and more.',
-    image: '/images/spices.png',
+    image: '/images/spices.webp',
     badge: 'Spices',
   },
   {
     title: 'Confectionery supply',
     description: 'Candy, lollipop, and jelly assortments on request.',
-    image: '/images/confectionery.png',
+    image: '/images/confectionery.webp',
     badge: 'Confectionery',
   },
 ]
