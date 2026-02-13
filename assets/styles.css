@@ -17,15 +17,15 @@
   --primary-soft: rgba(15, 118, 110, 0.12);
   --primary-glow: rgba(15, 118, 110, 0.2);
   --danger: #b33a2b;
-  --shadow: 0 12px 30px rgba(12, 24, 12, 0.1);
-  --shadow-soft: 0 8px 18px rgba(12, 24, 12, 0.08);
+  --shadow: 0 10px 24px rgba(12, 24, 12, 0.08);
+  --shadow-soft: 0 6px 14px rgba(12, 24, 12, 0.06);
 }
 
 body {
   margin: 0;
   font-family: "Inter", "Segoe UI", Tahoma, sans-serif;
   color: var(--text);
-  background: #f7f8fa;
+  background: #f8f9fb;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
 }
@@ -288,12 +288,13 @@ img {
   position: absolute;
   top: 16px;
   left: 16px;
-  background: rgba(15, 118, 110, 0.85);
-  color: #ffffff;
+  background: #ffffff;
+  color: var(--primary);
   padding: 6px 12px;
   border-radius: 999px;
   font-weight: 600;
   font-size: 0.8rem;
+  border: 1px solid var(--border);
 }
 
 .hero-slide-content {
@@ -301,11 +302,11 @@ img {
   left: 16px;
   right: 16px;
   bottom: 16px;
-  background: rgba(15, 23, 30, 0.45);
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text);
   padding: 12px 14px;
   border-radius: 14px;
-  backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
 }
 
 .hero-slide-title {
@@ -455,7 +456,6 @@ img {
 
 .section-header h2 {
   position: relative;
-  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
 }
 
 .section-header h2::after {
@@ -597,7 +597,7 @@ img {
 }
 
 .category-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow);
   border-color: rgba(15, 118, 110, 0.35);
 }
@@ -655,7 +655,7 @@ img {
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s ease;
-  box-shadow: 0 6px 12px rgba(12, 24, 12, 0.08);
+  box-shadow: 0 4px 10px rgba(12, 24, 12, 0.06);
 }
 
 .chip:focus-visible {
@@ -815,26 +815,16 @@ img {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-soft);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   width: 100%;
   position: relative;
 }
 
-.product-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary), var(--primary-bright));
-  opacity: 0.6;
-}
 
 .product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 36px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
   border-color: rgba(15, 118, 110, 0.35);
 }
 
