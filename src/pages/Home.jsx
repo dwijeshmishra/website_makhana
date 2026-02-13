@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import ProductCard from '../components/ProductCard.jsx'
 
 const CATEGORY_ORDER = ['Rice', 'Confectionery', 'Spices', 'Agricultural']
@@ -18,17 +18,47 @@ const SUBCATEGORY_ORDER = {
 }
 
 const CATEGORY_IMAGES = {
-  Rice: '/images/basmati-rice.png',
-  Confectionery: '/images/confectionery.png',
-  Spices: '/images/spices.png',
-  Agricultural: '/images/agricultural-products.png',
+  Rice: '/images/basmati-rice.webp',
+  Confectionery: '/images/confectionery.webp',
+  Spices: '/images/spices.webp',
+  Agricultural: '/images/agricultural-products.webp',
 }
+
+const CATEGORY_ICONS = {
+  Rice: 'RC',
+  Confectionery: 'CF',
+  Spices: 'SP',
+  Agricultural: 'AG',
+}
+
+const HERO_SLIDES = [
+  {
+    title: 'Export-ready rice lots',
+    description: 'Basmati, non-basmati, and sella options for bulk buyers.',
+    image: '/images/basmati-rice.webp',
+    badge: 'Rice',
+  },
+  {
+    title: 'Whole spices for global buyers',
+    description: 'Chilli, coriander, garlic, oregano, and more.',
+    image: '/images/spices.webp',
+    badge: 'Spices',
+  },
+  {
+    title: 'Confectionery supply',
+    description: 'Candy, lollipop, and jelly assortments on request.',
+    image: '/images/confectionery.webp',
+    badge: 'Confectionery',
+  },
+]
 
 const Home = ({ products, loading }) => {
   const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedSubcategory, setSelectedSubcategory] = useState('All')
   const [query, setQuery] = useState('')
+  const [activeSlide, setActiveSlide] = useState(0)
   const productsRef = useRef(null)
+  const filtersRef = useRef(null)
   const categories = CATEGORY_ORDER
 
   const subcategories = useMemo(() => {
@@ -45,8 +75,12 @@ const Home = ({ products, loading }) => {
         result.push(item)
       }
     })
-    return ['All', ...result]
+    return result
   }, [products, selectedCategory])
+
+  const subcategoryTabs = useMemo(() => {
+    return ['All', ...subcategories]
+  }, [subcategories])
 
   const filteredProducts = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase()
@@ -90,10 +124,18 @@ const Home = ({ products, loading }) => {
     setSelectedSubcategory('All')
     setQuery('')
 
-    if (window.matchMedia('(max-width: 900px)').matches && productsRef.current) {
-      productsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const target = filtersRef.current || productsRef.current
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length)
+    }, 4500)
+    return () => window.clearInterval(interval)
+  }, [])
 
   return (
     <>
@@ -103,7 +145,11 @@ const Home = ({ products, loading }) => {
             <div className="hero-text">
               <div>
                 <p className="eyebrow">Reliable sourcing. Consistent quality.</p>
-                <h1>Pure, fresh, and export-ready products for global buyers.</h1>
+                <h1>
+                  Pure, fresh, and{' '}
+                  <span className="title-accent">export-ready</span> products for
+                  global buyers.
+                </h1>
                 <p className="hero-copy">
                   We supply garlic, red chilli, onion, makhana, rice, and a wide
                   range of spices with strict quality control and export
@@ -134,25 +180,80 @@ const Home = ({ products, loading }) => {
               </div>
             </div>
             <div className="hero-visual">
-              <img src="/images/spices.png" alt="Export spice assortment" />
-              <div className="hero-badges">
-                <span className="hero-badge">Export-ready lots</span>
-                <span className="hero-badge secondary">Custom packaging</span>
+              <div className="hero-slider">
+                {HERO_SLIDES.map((slide, index) => (
+                  <div
+                    key={slide.title}
+                    className={`hero-slide ${
+                      index === activeSlide ? 'active' : ''
+                    }`}
+                    aria-hidden={index !== activeSlide}
+                  >
+                    <img src={slide.image} alt={slide.title} />
+                    <span className="hero-slide-badge">{slide.badge}</span>
+                    <div className="hero-slide-content">
+                      <p className="hero-slide-title">{slide.title}</p>
+                      <p className="hero-slide-copy">{slide.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="hero-dots">
+                {HERO_SLIDES.map((slide, index) => (
+                  <button
+                    key={slide.title}
+                    type="button"
+                    className={`hero-dot ${index === activeSlide ? 'active' : ''}`}
+                    onClick={() => setActiveSlide(index)}
+                    aria-label={`Show slide ${index + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        <section id="products" className="section" ref={productsRef}>
+        <section className="trust-strip section-divider">
+          <div className="container trust-grid">
+            <div className="trust-item">
+              <span className="trust-icon">QC</span>
+              <div>
+                <p className="trust-title">Quality checked</p>
+                <p className="trust-copy">Consistent grading before dispatch.</p>
+              </div>
+            </div>
+            <div className="trust-item">
+              <span className="trust-icon">PK</span>
+              <div>
+                <p className="trust-title">Custom packing</p>
+                <p className="trust-copy">Flexible sizes and branding.</p>
+              </div>
+            </div>
+            <div className="trust-item">
+              <span className="trust-icon">GL</span>
+              <div>
+                <p className="trust-title">Global supply</p>
+                <p className="trust-copy">Export-ready lots, on time.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="products" className="section section-products" ref={productsRef}>
           <div className="container">
             <div className="section-header">
               <div>
                 <p className="eyebrow">Our products</p>
-                <h2>Explore our export catalog</h2>
+                <h2>
+                  {selectedCategory
+                    ? `${selectedCategory} products`
+                    : 'Explore our export catalog'}
+                </h2>
               </div>
               <p className="section-subtitle">
-                Pricing depends on grade, packaging, and shipment size. Contact
-                us for the latest quote.
+                {selectedCategory
+                  ? `Select a subcategory or search within ${selectedCategory}.`
+                  : 'Pricing depends on grade, packaging, and shipment size. Contact us for the latest quote.'}
               </p>
             </div>
             <div className="category-grid">
@@ -170,9 +271,11 @@ const Home = ({ products, loading }) => {
                     alt={`${category} category`}
                   />
                   <div className="category-card-body">
+                    <span className="category-icon">{CATEGORY_ICONS[category]}</span>
                     <div>
                       <h3>{category}</h3>
                       <p>Explore {category.toLowerCase()} products</p>
+                      <span className="category-link">View category →</span>
                     </div>
                     <span className="category-pill">
                       {categoryCounts[category] || 0} items
@@ -181,7 +284,7 @@ const Home = ({ products, loading }) => {
                 </button>
               ))}
             </div>
-            <div className="product-toolbar">
+            <div className="product-toolbar" ref={filtersRef}>
               <div className="toolbar-row">
                 <div className="category-tabs">
                   {categories.map((category) => (
@@ -200,8 +303,8 @@ const Home = ({ products, loading }) => {
               </div>
               {selectedCategory ? (
                 <div className="toolbar-row">
-                  <div className="subcategory-tabs">
-                    {subcategories.map((subcategory) => (
+                <div className="subcategory-tabs">
+                  {subcategoryTabs.map((subcategory) => (
                       <button
                         key={subcategory}
                         type="button"
@@ -253,7 +356,7 @@ const Home = ({ products, loading }) => {
           </div>
         </section>
 
-        <section className="section light" id="process">
+        <section className="section light section-divider" id="process">
           <div className="container">
             <div className="section-header">
               <div>
@@ -285,7 +388,7 @@ const Home = ({ products, loading }) => {
           </div>
         </section>
 
-        <section className="section accent">
+        <section className="section accent section-divider">
           <div className="container">
             <div className="section-header">
               <div>
@@ -313,7 +416,7 @@ const Home = ({ products, loading }) => {
           </div>
         </section>
 
-        <section id="gallery" className="section">
+        <section id="gallery" className="section section-divider">
           <div className="container">
             <div className="section-header">
               <div>
@@ -339,7 +442,7 @@ const Home = ({ products, loading }) => {
           </div>
         </section>
 
-        <section id="contact" className="section">
+        <section id="contact" className="section section-divider">
           <div className="container">
             <div className="section-header">
               <div>

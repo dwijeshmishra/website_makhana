@@ -363,7 +363,7 @@ const Admin = ({ products, setProducts, onReset, loading }) => {
                   id="image"
                   name="image"
                   type="text"
-                  placeholder="/images/garlic.png"
+                  placeholder="/images/garlic.webp"
                   value={formState.image}
                   onChange={handleChange}
                 />

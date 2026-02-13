@@ -29,7 +29,7 @@ const mergeProducts = (stored, defaults) => {
     const resolvedImage =
       !item.image ||
       item.image === '/images/placeholder.svg' ||
-      (item.image === '/images/confectionery.png' &&
+      (item.image.endsWith('.png') &&
         fallback.image &&
         fallback.image !== item.image)
         ? fallback.image
