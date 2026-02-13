@@ -264,5 +264,5 @@ formInputs.forEach(input => {
 
 // Console welcome message
 console.log('%c🌾 Samarth Overseas', 'font-size: 20px; font-weight: bold; color: #2C5530;');
-console.log('%cPremium Makhana Exporters from India', 'font-size: 14px; color: #5A5A5A;');
+console.log('%cPremium Product Exporters from India', 'font-size: 14px; color: #5A5A5A;');
 console.log('%cWebsite developed with care for quality and excellence', 'font-size: 12px; color: #D4AF37;');

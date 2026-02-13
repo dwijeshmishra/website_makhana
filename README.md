@@ -1,6 +1,6 @@
-# Samarth Overseas - Premium Makhana Export Website
+# Samarth Overseas - Premium Export Website
 
-A modern, responsive website for Samarth Overseas, a premium makhana (fox nuts) exporter from India.
+A modern, responsive website for Samarth Overseas, a premium product exporter from India.
 
 ## 🌟 Features
 

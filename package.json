@@ -1,7 +1,7 @@
 {
   "name": "samarth-overseas-website",
   "version": "2.0.0",
-  "description": "Premium Makhana Export Website for Samarth Overseas",
+  "description": "Premium Product Export Website for Samarth Overseas",
   "main": "index.html",
   "scripts": {
     "dev": "vite",
@@ -10,11 +10,11 @@
     "serve": "npx http-server -p 8000"
   },
   "keywords": [
-    "makhana",
-    "fox-nuts",
     "export",
     "india",
-    "agriculture"
+    "agriculture",
+    "products",
+    "international-trade"
   ],
   "author": "Samarth Overseas",
   "license": "UNLICENSED",
