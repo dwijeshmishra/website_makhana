@@ -6,7 +6,7 @@ const productsData = [
     category: "Rice",
     summary: "Long grain basmati with strong aroma and clean polishing.",
     description: "We source and supply basmati rice with consistent grain length and low broken percentage.",
-    image: "assets/images/basmati-rice.webp",
+    image: "/images/basmati-rice.webp",
     packaging: "10 kg, 25 kg, 50 kg bags",
     moq: "5 MT"
   },
@@ -16,7 +16,7 @@ const productsData = [
     category: "Rice",
     summary: "Reliable non-basmati varieties for bulk buyers.",
     description: "Consistent quality non-basmati rice suitable for bulk shipments with clean grading and packing.",
-    image: "assets/images/non-basmati-rice.webp",
+    image: "/images/non-basmati-rice.webp",
     packaging: "10 kg, 25 kg, 50 kg bags",
     moq: "10 MT"
   },
@@ -26,7 +26,7 @@ const productsData = [
     category: "Rice",
     summary: "Parboiled sella rice with consistent grain quality.",
     description: "Export quality sella rice for bulk buyers with clean grading and packing.",
-    image: "assets/images/sella-rice.webp",
+    image: "/images/sella-rice.webp",
     packaging: "10 kg, 25 kg, 50 kg bags",
     moq: "10 MT"
   },
@@ -36,7 +36,7 @@ const productsData = [
     category: "Confectionery",
     summary: "Assorted candy options for export buyers.",
     description: "Candy products supplied as per buyer requirements and packaging specs.",
-    image: "assets/images/candy.webp",
+    image: "/images/candy.webp",
     packaging: "Custom",
     moq: "Custom"
   },
@@ -46,7 +46,7 @@ const productsData = [
     category: "Confectionery",
     summary: "Lollipop varieties available for bulk supply.",
     description: "Lollipop products supplied as per buyer requirements and packaging specs.",
-    image: "assets/images/lollipop.webp",
+    image: "/images/lollipop.webp",
     packaging: "Custom",
     moq: "Custom"
   },
@@ -56,7 +56,7 @@ const productsData = [
     category: "Confectionery",
     summary: "Jelly products available for export supply.",
     description: "Jelly products supplied as per buyer requirements and packaging specs.",
-    image: "assets/images/jelly.webp",
+    image: "/images/jelly.webp",
     packaging: "Custom",
     moq: "Custom"
   },
@@ -66,7 +66,7 @@ const productsData = [
     category: "Spices",
     summary: "Vibrant color and strong heat for global spice buyers.",
     description: "Cleaned and graded red chilli with consistent color and pungency. Ideal for processing and whole spice trade.",
-    image: "assets/images/red-chilli.webp",
+    image: "/images/red-chilli.webp",
     packaging: "10 kg, 25 kg, 50 kg bags",
     moq: "5 MT"
   },
@@ -76,7 +76,7 @@ const productsData = [
     category: "Spices",
     summary: "Aromatic coriander for whole spice buyers.",
     description: "Cleaned and graded coriander suitable for export and spice processing.",
-    image: "assets/images/spices.webp",
+    image: "/images/spices.webp",
     packaging: "10 kg, 25 kg, 50 kg bags",
     moq: "5 MT"
   },
@@ -86,7 +86,7 @@ const productsData = [
     category: "Spices",
     summary: "Export grade garlic with strong aroma and uniform cloves.",
     description: "We supply well-sorted garlic suitable for export with moisture control, clean skins, and consistent sizing.",
-    image: "assets/images/garlic.webp",
+    image: "/images/garlic.webp",
     packaging: "5 kg, 10 kg, 20 kg mesh bags",
     moq: "5 MT"
   },
@@ -96,7 +96,7 @@ const productsData = [
     category: "Spices",
     summary: "Dried oregano with strong aroma and clean sorting.",
     description: "Export-quality dried oregano for seasoning blends and food manufacturing.",
-    image: "assets/images/oregano.webp",
+    image: "/images/oregano.webp",
     packaging: "1 kg, 5 kg, 10 kg bags",
     moq: "1 MT"
   },
@@ -106,7 +106,7 @@ const productsData = [
     category: "Spices",
     summary: "Mixed herbs and seasoning options on request.",
     description: "Custom seasoning herb mixes for bulk buyers with consistent aroma and quality.",
-    image: "assets/images/seasoning-herbs.webp",
+    image: "/images/seasoning-herbs.webp",
     packaging: "1 kg, 5 kg, 10 kg bags",
     moq: "1 MT"
   },
@@ -116,7 +116,7 @@ const productsData = [
     category: "Spices",
     summary: "Cumin, coriander, turmeric, and more on request.",
     description: "Wide range of whole spices sourced from reliable farms with export-grade cleaning and packing.",
-    image: "assets/images/spices.webp",
+    image: "/images/spices.webp",
     packaging: "10 kg, 25 kg, 50 kg bags",
     moq: "5 MT"
   },
@@ -126,7 +126,7 @@ const productsData = [
     category: "Agricultural",
     summary: "Fresh onions with strong shelf life and uniform grading.",
     description: "We provide export quality onions with proper curing and packing for longer transit.",
-    image: "assets/images/onion.webp",
+    image: "/images/onion.webp",
     packaging: "10 kg, 20 kg, 25 kg mesh bags",
     moq: "10 MT"
   },
@@ -136,7 +136,7 @@ const productsData = [
     category: "Agricultural",
     summary: "Premium makhana with clean sorting and export packing.",
     description: "High quality fox nuts for retail and bulk buyers. Roasted and unroasted lots available on request.",
-    image: "assets/images/makhana.webp",
+    image: "/images/makhana.webp",
     packaging: "5 kg, 10 kg cartons",
     moq: "3 MT"
   },
@@ -146,7 +146,7 @@ const productsData = [
     category: "Agricultural",
     summary: "Additional agricultural products available on request.",
     description: "We can source other agricultural products based on buyer requirements.",
-    image: "assets/images/agricultural-products.webp",
+    image: "/images/agricultural-products.webp",
     packaging: "Custom",
     moq: "Custom"
   }
