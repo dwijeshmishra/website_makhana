@@ -1,3 +1,157 @@
+// Products Data - imported from your products.json
+const productsData = [
+  {
+    id: "basmati-rice",
+    name: "Basmati Rice",
+    category: "Rice",
+    summary: "Long grain basmati with strong aroma and clean polishing.",
+    description: "We source and supply basmati rice with consistent grain length and low broken percentage.",
+    image: "assets/images/basmati-rice.webp",
+    packaging: "10 kg, 25 kg, 50 kg bags",
+    moq: "5 MT"
+  },
+  {
+    id: "non-basmati-rice",
+    name: "Non-Basmati Rice",
+    category: "Rice",
+    summary: "Reliable non-basmati varieties for bulk buyers.",
+    description: "Consistent quality non-basmati rice suitable for bulk shipments with clean grading and packing.",
+    image: "assets/images/non-basmati-rice.webp",
+    packaging: "10 kg, 25 kg, 50 kg bags",
+    moq: "10 MT"
+  },
+  {
+    id: "sela-rice",
+    name: "Sella Rice",
+    category: "Rice",
+    summary: "Parboiled sella rice with consistent grain quality.",
+    description: "Export quality sella rice for bulk buyers with clean grading and packing.",
+    image: "assets/images/sella-rice.webp",
+    packaging: "10 kg, 25 kg, 50 kg bags",
+    moq: "10 MT"
+  },
+  {
+    id: "candy",
+    name: "Candy",
+    category: "Confectionery",
+    summary: "Assorted candy options for export buyers.",
+    description: "Candy products supplied as per buyer requirements and packaging specs.",
+    image: "assets/images/candy.webp",
+    packaging: "Custom",
+    moq: "Custom"
+  },
+  {
+    id: "lollipop",
+    name: "Lollipop",
+    category: "Confectionery",
+    summary: "Lollipop varieties available for bulk supply.",
+    description: "Lollipop products supplied as per buyer requirements and packaging specs.",
+    image: "assets/images/lollipop.webp",
+    packaging: "Custom",
+    moq: "Custom"
+  },
+  {
+    id: "jelly",
+    name: "Jelly",
+    category: "Confectionery",
+    summary: "Jelly products available for export supply.",
+    description: "Jelly products supplied as per buyer requirements and packaging specs.",
+    image: "assets/images/jelly.webp",
+    packaging: "Custom",
+    moq: "Custom"
+  },
+  {
+    id: "red-chilli",
+    name: "Lal Khadi Red Chilli",
+    category: "Spices",
+    summary: "Vibrant color and strong heat for global spice buyers.",
+    description: "Cleaned and graded red chilli with consistent color and pungency. Ideal for processing and whole spice trade.",
+    image: "assets/images/red-chilli.webp",
+    packaging: "10 kg, 25 kg, 50 kg bags",
+    moq: "5 MT"
+  },
+  {
+    id: "coriander",
+    name: "Coriander",
+    category: "Spices",
+    summary: "Aromatic coriander for whole spice buyers.",
+    description: "Cleaned and graded coriander suitable for export and spice processing.",
+    image: "assets/images/spices.webp",
+    packaging: "10 kg, 25 kg, 50 kg bags",
+    moq: "5 MT"
+  },
+  {
+    id: "garlic",
+    name: "Garlic",
+    category: "Spices",
+    summary: "Export grade garlic with strong aroma and uniform cloves.",
+    description: "We supply well-sorted garlic suitable for export with moisture control, clean skins, and consistent sizing.",
+    image: "assets/images/garlic.webp",
+    packaging: "5 kg, 10 kg, 20 kg mesh bags",
+    moq: "5 MT"
+  },
+  {
+    id: "oregano",
+    name: "Oregano",
+    category: "Spices",
+    summary: "Dried oregano with strong aroma and clean sorting.",
+    description: "Export-quality dried oregano for seasoning blends and food manufacturing.",
+    image: "assets/images/oregano.webp",
+    packaging: "1 kg, 5 kg, 10 kg bags",
+    moq: "1 MT"
+  },
+  {
+    id: "seasoning-herbs",
+    name: "Seasoning Herbs",
+    category: "Spices",
+    summary: "Mixed herbs and seasoning options on request.",
+    description: "Custom seasoning herb mixes for bulk buyers with consistent aroma and quality.",
+    image: "assets/images/seasoning-herbs.webp",
+    packaging: "1 kg, 5 kg, 10 kg bags",
+    moq: "1 MT"
+  },
+  {
+    id: "whole-spices",
+    name: "Whole Spices",
+    category: "Spices",
+    summary: "Cumin, coriander, turmeric, and more on request.",
+    description: "Wide range of whole spices sourced from reliable farms with export-grade cleaning and packing.",
+    image: "assets/images/spices.webp",
+    packaging: "10 kg, 25 kg, 50 kg bags",
+    moq: "5 MT"
+  },
+  {
+    id: "onion",
+    name: "Onion",
+    category: "Agricultural",
+    summary: "Fresh onions with strong shelf life and uniform grading.",
+    description: "We provide export quality onions with proper curing and packing for longer transit.",
+    image: "assets/images/onion.webp",
+    packaging: "10 kg, 20 kg, 25 kg mesh bags",
+    moq: "10 MT"
+  },
+  {
+    id: "makhana",
+    name: "Makhana (Fox Nuts)",
+    category: "Agricultural",
+    summary: "Premium makhana with clean sorting and export packing.",
+    description: "High quality fox nuts for retail and bulk buyers. Roasted and unroasted lots available on request.",
+    image: "assets/images/makhana.webp",
+    packaging: "5 kg, 10 kg cartons",
+    moq: "3 MT"
+  },
+  {
+    id: "agricultural-products",
+    name: "Other Agricultural Products",
+    category: "Agricultural",
+    summary: "Additional agricultural products available on request.",
+    description: "We can source other agricultural products based on buyer requirements.",
+    image: "assets/images/agricultural-products.webp",
+    packaging: "Custom",
+    moq: "Custom"
+  }
+];
+
 // Mobile Navigation Toggle
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
@@ -72,29 +226,79 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Intersection Observer for Animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+// Load Products
+function createProductCard(product) {
+    return `
+        <div class="product-card" data-category="${product.category}">
+            <div class="product-image-container">
+                <img src="${product.image}" alt="${product.name}" loading="lazy">
+                <div class="product-category-badge">${product.category}</div>
+            </div>
+            <div class="product-content">
+                <h3 class="product-name">${product.name}</h3>
+                <p class="product-description">${product.description}</p>
+                <ul class="product-specs">
+                    <li>Packaging: ${product.packaging}</li>
+                    <li>MOQ: ${product.moq}</li>
+                </ul>
+                <a href="#contact" class="product-cta">Request Quote</a>
+            </div>
+        </div>
+    `;
+}
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
+function loadProducts() {
+    const productsGrid = document.getElementById('productsGrid');
+    if (!productsGrid) return;
+    
+    const productsHTML = productsData.map(product => createProductCard(product)).join('');
+    productsGrid.innerHTML = productsHTML;
+    
+    // Add animation to product cards
+    setTimeout(() => {
+        const cards = document.querySelectorAll('.product-card');
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 50);
+        });
+    }, 100);
+}
+
+// Category Filter
+const filterButtons = document.querySelectorAll('.filter-btn');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const category = button.getAttribute('data-category');
+        
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        // Filter products
+        const productCards = document.querySelectorAll('.product-card');
+        
+        productCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+                card.classList.remove('hidden');
+                // Animate in
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 50);
+            } else {
+                card.classList.add('hidden');
+            }
+        });
     });
-}, observerOptions);
-
-// Observe elements for animations
-const animateOnScroll = document.querySelectorAll('.product-card, .export-card, .quality-highlight, .feature-item, .visual-card');
-
-animateOnScroll.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
 });
 
 // Contact Form Handling
@@ -132,31 +336,6 @@ contactForm.addEventListener('submit', async (e) => {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
     }, 1500);
-    
-    // Example of actual API submission:
-    /*
-    try {
-        const response = await fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        });
-        
-        if (response.ok) {
-            alert('Thank you for your inquiry! We will get back to you within 24 hours.');
-            contactForm.reset();
-        } else {
-            alert('Something went wrong. Please try again.');
-        }
-    } catch (error) {
-        alert('Network error. Please try again later.');
-    } finally {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    }
-    */
 });
 
 // Stats Counter Animation
@@ -201,68 +380,11 @@ if (heroStats) {
     statsObserver.observe(heroStats);
 }
 
-// Add parallax effect to hero background
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroBackground = document.querySelector('.hero-background');
-    
-    if (heroBackground && scrolled < window.innerHeight) {
-        heroBackground.style.transform = `translateY(${scrolled * 0.3}px)`;
-    }
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    loadProducts();
 });
 
-// Add hover effect to product cards
-const productCards = document.querySelectorAll('.product-card');
-
-productCards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-8px) scale(1.02)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
-
-// Lazy loading for images (if images are added later)
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.add('loaded');
-                observer.unobserve(img);
-            }
-        });
-    });
-    
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-    });
-}
-
-// Add loading state management
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-});
-
-// Handle form input focus states
-const formInputs = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
-
-formInputs.forEach(input => {
-    input.addEventListener('focus', function() {
-        this.parentElement.classList.add('focused');
-    });
-    
-    input.addEventListener('blur', function() {
-        if (!this.value) {
-            this.parentElement.classList.remove('focused');
-        }
-    });
-});
-
-// Console welcome message
 console.log('%c🌾 Samarth Overseas', 'font-size: 20px; font-weight: bold; color: #2C5530;');
-console.log('%cPremium Product Exporters from India', 'font-size: 14px; color: #5A5A5A;');
+console.log('%cPremium Export Products from India', 'font-size: 14px; color: #5A5A5A;');
 console.log('%cWebsite developed with care for quality and excellence', 'font-size: 12px; color: #D4AF37;');
