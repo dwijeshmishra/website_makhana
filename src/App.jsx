@@ -5,6 +5,9 @@ import Home from './pages/Home.jsx'
 import ProductDetail from './pages/ProductDetail.jsx'
 import Admin from './pages/Admin.jsx'
 import NotFound from './pages/NotFound.jsx'
+import Products from './pages/Products.jsx'
+import Gallery from './pages/Gallery.jsx'
+import Contact from './pages/Contact.jsx'
 
 const STORAGE_KEY = 'samarth-overseas-products'
 const DATA_URL = '/products.json'
@@ -106,7 +109,16 @@ function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<Home products={products} loading={loading} />} />
+        <Route index element={<Home />} />
+        <Route
+          path="products"
+          element={<Products products={products} loading={loading} />}
+        />
+        <Route
+          path="gallery"
+          element={<Gallery products={products} loading={loading} />}
+        />
+        <Route path="contact" element={<Contact />} />
         <Route
           path="product/:id"
           element={<ProductDetail products={products} loading={loading} />}

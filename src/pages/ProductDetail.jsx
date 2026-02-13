@@ -89,7 +89,7 @@ const ProductDetail = ({ products, loading }) => {
               >
                 Contact for pricing
               </a>
-              <Link className="btn ghost" to="/#contact">
+              <Link className="btn ghost" to="/contact">
                 Request quote
               </Link>
               <a className="btn ghost" href="tel:+919826015502">
