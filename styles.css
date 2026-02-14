@@ -370,8 +370,8 @@ section[id] {
 
 .hero-image {
     position: relative;
-    /* Better fit on laptop-height screens at 100% zoom */
-    height: min(500px, 56vh);
+    /* Keep hero image large on desktop/laptop */
+    height: clamp(500px, 65vh, 560px);
     animation: fadeInRight 1s ease 0.4s both;
 }
 
