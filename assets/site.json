@@ -10,6 +10,12 @@
     "tons": "500+",
     "quality": "100%"
   },
+  "heroImages": [
+    "/images/spices.webp",
+    "/images/basmati-rice.webp",
+    "/images/makhana.webp",
+    "/images/confectionery.webp"
+  ],
   "certifications": [
     { "label": "FSSAI", "detail": "Food Safety" },
     { "label": "APEDA", "detail": "Export Registered" },

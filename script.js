@@ -192,6 +192,42 @@ function applySiteConfig(cfg) {
   } else if (whatsappFloat) {
     whatsappFloat.setAttribute('hidden', 'true')
   }
+
+  setupHeroImages(cfg?.heroImages)
+}
+
+function setupHeroImages(images) {
+  const img = document.querySelector('.hero-photo')
+  if (!img) return
+
+  const list = Array.isArray(images)
+    ? images.map((x) => String(x || '').trim()).filter(Boolean)
+    : []
+
+  const fallback = ['/images/spices.webp', '/images/basmati-rice.webp', '/images/makhana.webp']
+  const sources = list.length ? list : fallback
+  const unique = Array.from(new Set(sources))
+  if (unique.length <= 1) {
+    img.src = unique[0] || img.src
+    return
+  }
+
+  // Preload
+  unique.forEach((src) => {
+    const pre = new Image()
+    pre.src = src
+  })
+
+  let idx = Math.max(0, unique.indexOf(img.getAttribute('src') || img.src))
+
+  setInterval(() => {
+    idx = (idx + 1) % unique.length
+    img.classList.add('is-fading')
+    window.setTimeout(() => {
+      img.src = unique[idx]
+      img.classList.remove('is-fading')
+    }, 260)
+  }, 4500)
 }
 
 function createProductCard(product) {
