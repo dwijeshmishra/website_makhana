@@ -184,13 +184,20 @@ function applySiteConfig(cfg) {
   renderCertifications(cfg?.certifications)
 
   const whatsappFloat = document.getElementById('whatsappFloat')
+  const heroWhatsAppBtn = document.getElementById('heroWhatsAppBtn')
   const wa = String(cfg?.whatsapp || '').trim()
   if (whatsappFloat && wa) {
     const digits = wa.replace(/[^\d]/g, '')
-    whatsappFloat.href = `https://wa.me/${digits}`
+    const base = `https://wa.me/${digits}`
+    whatsappFloat.href = base
     whatsappFloat.removeAttribute('hidden')
+    if (heroWhatsAppBtn) {
+      heroWhatsAppBtn.href = base
+      heroWhatsAppBtn.removeAttribute('hidden')
+    }
   } else if (whatsappFloat) {
     whatsappFloat.setAttribute('hidden', 'true')
+    heroWhatsAppBtn?.setAttribute('hidden', 'true')
   }
 
   setupHeroImages(cfg?.heroImages)
@@ -230,6 +237,24 @@ function setupHeroImages(images) {
   }, 4500)
 }
 
+function buildWhatsAppProductLink(whatsapp, product) {
+  const wa = String(whatsapp || '').trim()
+  if (!wa) return ''
+  const digits = wa.replace(/[^\d]/g, '')
+  if (!digits) return ''
+
+  const name = product?.name ? String(product.name) : 'Product'
+  const category = product?.category ? String(product.category) : ''
+  const packaging = product?.packaging ? String(product.packaging) : ''
+  const moq = product?.moq ? String(product.moq) : ''
+
+  const text = encodeURIComponent(
+    `Hello Samarth Overseas,\n\nI’m interested in: ${name}${category ? ` (${category})` : ''}\nPackaging: ${packaging || 'Custom'}\nMOQ: ${moq || 'Custom'}\n\nPlease share price and availability. धन्यवाद.`,
+  )
+
+  return `https://wa.me/${digits}?text=${text}`
+}
+
 function createProductCard(product) {
   const name = product?.name ? String(product.name) : 'Product'
   const description = product?.description ? String(product.description) : ''
@@ -237,6 +262,8 @@ function createProductCard(product) {
   const packaging = product?.packaging ? String(product.packaging) : 'Custom'
   const moq = product?.moq ? String(product.moq) : 'Custom'
   const image = product?.image ? String(product.image) : '/images/placeholder.svg'
+  const whatsapp = (window.__siteConfig && window.__siteConfig.whatsapp) || ''
+  const waLink = buildWhatsAppProductLink(whatsapp, product)
 
   return `
     <div class="product-card" data-category="${category}">
@@ -251,7 +278,14 @@ function createProductCard(product) {
           <li>Packaging: ${packaging}</li>
           <li>MOQ: ${moq}</li>
         </ul>
-        <a href="#contact" class="product-cta">Request Quote</a>
+        <div class="product-actions">
+          <a href="/contact.html" class="product-cta">Request Quote</a>
+          ${
+            waLink
+              ? `<a class="product-whatsapp" href="${waLink}" target="_blank" rel="noopener noreferrer" aria-label="Request quote on WhatsApp for ${name}">WhatsApp</a>`
+              : ''
+          }
+        </div>
       </div>
     </div>
   `
@@ -445,6 +479,8 @@ async function init() {
   } catch {
     cfg = {}
   }
+  // make config available for product-card rendering
+  window.__siteConfig = cfg || {}
   applySiteConfig(cfg)
   setupContactForm(cfg)
 

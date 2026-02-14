@@ -296,6 +296,15 @@ section[id] {
     transform: translateY(-2px);
 }
 
+.btn-whatsapp {
+    border-color: rgba(22, 163, 74, 0.4);
+}
+
+.btn-whatsapp:hover {
+    background: #16a34a;
+    border-color: #16a34a;
+}
+
 .hero-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1315,6 +1324,31 @@ section[id] {
 .product-cta:hover {
     background: var(--primary);
     color: var(--white);
+}
+
+.product-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.product-whatsapp {
+    display: inline-block;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #ffffff;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    box-shadow: 0 10px 18px rgba(22, 163, 74, 0.25);
+}
+
+.product-whatsapp:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 22px rgba(22, 163, 74, 0.32);
 }
 
 /* Footer Logo */
