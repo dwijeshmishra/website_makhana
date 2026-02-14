@@ -830,6 +830,7 @@ section[id] {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+    align-items: stretch;
 }
 
 .export-card {
@@ -837,6 +838,9 @@ section[id] {
     padding: 2.5rem;
     border-radius: 16px;
     border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .export-card h3 {
@@ -851,6 +855,20 @@ section[id] {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    flex: 1;
+}
+
+.export-cta {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.export-cta .btn {
+    min-width: 180px;
 }
 
 .export-card ul li {
