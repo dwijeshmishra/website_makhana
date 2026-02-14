@@ -256,7 +256,7 @@ section[id] {
 .hero-buttons {
     display: flex;
     gap: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2.25rem;
     animation: fadeInUp 0.8s ease 0.5s both;
 }
 
@@ -310,8 +310,8 @@ section[id] {
 .hero-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    padding-top: 2rem;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--border);
     animation: fadeInUp 0.8s ease 0.6s both;
 }
@@ -370,8 +370,26 @@ section[id] {
 
 .hero-image {
     position: relative;
-    height: 500px;
+    /* Better fit on laptop-height screens at 100% zoom */
+    height: min(500px, 56vh);
     animation: fadeInRight 1s ease 0.4s both;
+}
+
+/* Laptop-height tuning (e.g. 1366x768) */
+@media (min-width: 900px) and (max-height: 820px) {
+    .hero {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .hero-description {
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+    }
+
+    .hero-title {
+        margin-bottom: 1.1rem;
+    }
 }
 
 .image-frame {
