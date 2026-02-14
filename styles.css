@@ -1148,8 +1148,8 @@ section[id] {
 /* WhatsApp CTA */
 .whatsapp-float {
     position: fixed;
-    right: 18px;
-    bottom: 18px;
+    right: calc(18px + env(safe-area-inset-right));
+    bottom: calc(18px + env(safe-area-inset-bottom));
     padding: 0.9rem 1.1rem;
     border-radius: 999px;
     background: linear-gradient(135deg, #22c55e, #16a34a);
@@ -1164,6 +1164,11 @@ section[id] {
 .whatsapp-float:hover {
     transform: translateY(-2px);
     box-shadow: 0 22px 34px rgba(22, 163, 74, 0.42);
+}
+
+.whatsapp-float:focus-visible {
+    outline: 3px solid rgba(22, 163, 74, 0.35);
+    outline-offset: 3px;
 }
 
 /* Category Filter */
@@ -1551,6 +1556,11 @@ section[id] {
 }
 
 @media (max-width: 768px) {
+    /* Give content space so WhatsApp button doesn't cover it */
+    body {
+        padding-bottom: calc(92px + env(safe-area-inset-bottom));
+    }
+
     .nav-menu {
         position: fixed;
         top: var(--nav-height, 80px);
@@ -1631,6 +1641,13 @@ section[id] {
         width: 100%;
     }
 
+    .whatsapp-float {
+        right: calc(14px + env(safe-area-inset-right));
+        bottom: calc(14px + env(safe-area-inset-bottom));
+        padding: 0.75rem 0.95rem;
+        font-size: 0.95rem;
+    }
+
     .product-detail-grid {
         grid-template-columns: 1fr;
     }
@@ -1660,5 +1677,10 @@ section[id] {
 
     .trust-grid {
         grid-template-columns: 1fr;
+    }
+
+    .whatsapp-float {
+        padding: 0.7rem 0.85rem;
+        font-size: 0.9rem;
     }
 }
