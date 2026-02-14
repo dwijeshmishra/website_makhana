@@ -18,6 +18,7 @@ export default defineConfig({
         index: resolve(__dirname, 'index.html'),
         about: resolve(__dirname, 'about.html'),
         products: resolve(__dirname, 'products.html'),
+        product: resolve(__dirname, 'product.html'),
         quality: resolve(__dirname, 'quality.html'),
         contact: resolve(__dirname, 'contact.html'),
       },

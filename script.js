@@ -85,6 +85,11 @@ function setupActiveNavLink() {
     navLinks.forEach((link) => {
       const href = link.getAttribute('href') || ''
       if (!href) return
+      // Treat product detail as part of Products section
+      if (path.endsWith('/product.html') && href === '/products.html') {
+        link.classList.add('active')
+        return
+      }
       if (href === '/') {
         link.classList.toggle('active', path === '/' || path.endsWith('/index.html'))
       } else {
@@ -256,6 +261,7 @@ function buildWhatsAppProductLink(whatsapp, product) {
 }
 
 function createProductCard(product) {
+  const id = product?.id ? String(product.id) : ''
   const name = product?.name ? String(product.name) : 'Product'
   const description = product?.description ? String(product.description) : ''
   const category = product?.category ? String(product.category) : ''
@@ -264,22 +270,24 @@ function createProductCard(product) {
   const image = product?.image ? String(product.image) : '/images/placeholder.svg'
   const whatsapp = (window.__siteConfig && window.__siteConfig.whatsapp) || ''
   const waLink = buildWhatsAppProductLink(whatsapp, product)
+  const detailsLink = id ? `/product.html?id=${encodeURIComponent(id)}` : '/products.html'
 
   return `
     <div class="product-card" data-category="${category}">
-      <div class="product-image-container">
+      <a class="product-image-container" href="${detailsLink}" aria-label="View ${name} details">
         <img src="${image}" alt="${name}" loading="lazy" decoding="async">
         <div class="product-category-badge">${category}</div>
-      </div>
+      </a>
       <div class="product-content">
-        <h3 class="product-name">${name}</h3>
+        <h3 class="product-name"><a class="product-title-link" href="${detailsLink}">${name}</a></h3>
         <p class="product-description">${description}</p>
         <ul class="product-specs">
           <li>Packaging: ${packaging}</li>
           <li>MOQ: ${moq}</li>
         </ul>
         <div class="product-actions">
-          <a href="/contact.html" class="product-cta">Request Quote</a>
+          <a href="${detailsLink}" class="product-details">View Details</a>
+          <a href="/contact.html?productId=${encodeURIComponent(id)}" class="product-cta">Request Quote</a>
           ${
             waLink
               ? `<a class="product-whatsapp" href="${waLink}" target="_blank" rel="noopener noreferrer" aria-label="Request quote on WhatsApp for ${name}">WhatsApp</a>`
@@ -423,6 +431,120 @@ function setupContactForm(cfg) {
   })
 }
 
+function prefillContactFromQuery(products) {
+  const contactForm = document.getElementById('contactForm')
+  if (!contactForm) return
+
+  const params = new URLSearchParams(window.location.search)
+  const productId = params.get('productId') || params.get('id') || ''
+  if (!productId) return
+
+  const product = Array.isArray(products)
+    ? products.find((p) => String(p?.id) === String(productId))
+    : null
+  if (!product) return
+
+  const select = contactForm.querySelector('#product')
+  const message = contactForm.querySelector('#message')
+
+  const cat = String(product.category || '').toLowerCase()
+  const mapped =
+    cat.includes('rice')
+      ? 'rice'
+      : cat.includes('spice')
+        ? 'spices'
+        : cat.includes('confectionery')
+          ? 'confectionery'
+          : cat.includes('agricultural')
+            ? 'agricultural'
+            : ''
+
+  if (select && mapped) {
+    select.value = mapped
+  }
+
+  if (message && !String(message.value || '').trim()) {
+    message.value = `Hi,\n\nI’m interested in ${product.name}.\nPackaging: ${product.packaging || 'Custom'}\nMOQ: ${product.moq || 'Custom'}\n\nPlease share price and availability.\n`
+  }
+}
+
+function renderProductDetail(products, cfg) {
+  const wrap = document.getElementById('productDetail')
+  if (!wrap) return false
+
+  const params = new URLSearchParams(window.location.search)
+  const id = params.get('id')
+  if (!id) {
+    wrap.innerHTML =
+      '<div class="export-card"><h2 class="section-title" style="margin:0 0 0.75rem;">Product not found</h2><p class="section-description" style="margin:0;">Please open a product from the catalog.</p><div class="export-cta"><a class="btn btn-primary" href="/products.html">Go to Products</a></div></div>'
+    return true
+  }
+
+  const product = Array.isArray(products)
+    ? products.find((p) => String(p?.id) === String(id))
+    : null
+
+  if (!product) {
+    wrap.innerHTML =
+      '<div class="export-card"><h2 class="section-title" style="margin:0 0 0.75rem;">Product not found</h2><p class="section-description" style="margin:0;">This product may have been removed or renamed.</p><div class="export-cta"><a class="btn btn-primary" href="/products.html">Go to Products</a></div></div>'
+    return true
+  }
+
+  const name = product.name || 'Product'
+  document.title = `${name} | Samarth Overseas`
+
+  const descMeta = document.querySelector('meta[name="description"]')
+  if (descMeta) {
+    descMeta.setAttribute('content', `${name} — ${product.summary || product.description || ''}`.trim())
+  }
+
+  const image = product.image || '/images/placeholder.svg'
+  const tags = Array.isArray(product.tags) ? product.tags : []
+  const waLink = buildWhatsAppProductLink(cfg?.whatsapp, product)
+
+  wrap.innerHTML = `
+    <div class="product-detail-grid">
+      <div class="product-detail-media">
+        <img src="${image}" alt="${name}" loading="eager" decoding="async">
+      </div>
+      <div class="product-detail-content">
+        <div class="section-label">${product.category || ''}${product.subcategory ? ` • ${product.subcategory}` : ''}</div>
+        <h1 class="product-detail-title">${name}</h1>
+        <p class="product-detail-summary">${product.summary || ''}</p>
+        <p class="product-detail-description">${product.description || ''}</p>
+
+        <div class="product-detail-specs">
+          <div class="spec-row"><span>Origin</span><strong>${product.origin || 'India'}</strong></div>
+          <div class="spec-row"><span>Packaging</span><strong>${product.packaging || 'Custom'}</strong></div>
+          <div class="spec-row"><span>MOQ</span><strong>${product.moq || 'Custom'}</strong></div>
+        </div>
+
+        ${
+          tags.length
+            ? `<div class="tag-row">${tags
+                .map((t) => `<span class="tag-pill">${String(t)}</span>`)
+                .join('')}</div>`
+            : ''
+        }
+
+        <div class="export-cta">
+          <a class="btn btn-secondary" href="/products.html">Back to Products</a>
+          <a class="btn btn-primary" href="/contact.html?productId=${encodeURIComponent(
+            String(product.id || ''),
+          )}">Request Quote</a>
+          ${
+            waLink
+              ? `<a class="btn btn-secondary btn-whatsapp" href="${waLink}" target="_blank" rel="noopener noreferrer">WhatsApp</a>`
+              : ''
+          }
+        </div>
+      </div>
+    </div>
+  `
+
+  return true
+}
+
 function setupStatsCounter() {
   const heroStats = $('.hero-stats')
   if (!heroStats) return
@@ -490,9 +612,14 @@ async function init() {
   } catch {
     products = []
   }
-  renderProducts(Array.isArray(products) ? products : [])
-  setupCategoryFilter()
-  setupStatsCounter()
+  const productList = Array.isArray(products) ? products : []
+  const isDetail = renderProductDetail(productList, cfg)
+  if (!isDetail) {
+    renderProducts(productList)
+    setupCategoryFilter()
+    setupStatsCounter()
+  }
+  prefillContactFromQuery(productList)
 
   console.log('%c Samarth Overseas', 'font-size: 16px; font-weight: bold; color: #2C5530;')
 }
