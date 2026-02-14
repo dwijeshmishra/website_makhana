@@ -1,403 +1,412 @@
-// Products Data - imported from your products.json
-const productsData = [
-  {
-    id: "basmati-rice",
-    name: "Basmati Rice",
-    category: "Rice",
-    summary: "Long grain basmati with strong aroma and clean polishing.",
-    description: "We source and supply basmati rice with consistent grain length and low broken percentage.",
-    image: "/images/basmati-rice.webp",
-    packaging: "10 kg, 25 kg, 50 kg bags",
-    moq: "5 MT"
-  },
-  {
-    id: "non-basmati-rice",
-    name: "Non-Basmati Rice",
-    category: "Rice",
-    summary: "Reliable non-basmati varieties for bulk buyers.",
-    description: "Consistent quality non-basmati rice suitable for bulk shipments with clean grading and packing.",
-    image: "/images/non-basmati-rice.webp",
-    packaging: "10 kg, 25 kg, 50 kg bags",
-    moq: "10 MT"
-  },
-  {
-    id: "sela-rice",
-    name: "Sella Rice",
-    category: "Rice",
-    summary: "Parboiled sella rice with consistent grain quality.",
-    description: "Export quality sella rice for bulk buyers with clean grading and packing.",
-    image: "/images/sella-rice.webp",
-    packaging: "10 kg, 25 kg, 50 kg bags",
-    moq: "10 MT"
-  },
-  {
-    id: "candy",
-    name: "Candy",
-    category: "Confectionery",
-    summary: "Assorted candy options for export buyers.",
-    description: "Candy products supplied as per buyer requirements and packaging specs.",
-    image: "/images/candy.webp",
-    packaging: "Custom",
-    moq: "Custom"
-  },
-  {
-    id: "lollipop",
-    name: "Lollipop",
-    category: "Confectionery",
-    summary: "Lollipop varieties available for bulk supply.",
-    description: "Lollipop products supplied as per buyer requirements and packaging specs.",
-    image: "/images/lollipop.webp",
-    packaging: "Custom",
-    moq: "Custom"
-  },
-  {
-    id: "jelly",
-    name: "Jelly",
-    category: "Confectionery",
-    summary: "Jelly products available for export supply.",
-    description: "Jelly products supplied as per buyer requirements and packaging specs.",
-    image: "/images/jelly.webp",
-    packaging: "Custom",
-    moq: "Custom"
-  },
-  {
-    id: "red-chilli",
-    name: "Lal Khadi Red Chilli",
-    category: "Spices",
-    summary: "Vibrant color and strong heat for global spice buyers.",
-    description: "Cleaned and graded red chilli with consistent color and pungency. Ideal for processing and whole spice trade.",
-    image: "/images/red-chilli.webp",
-    packaging: "10 kg, 25 kg, 50 kg bags",
-    moq: "5 MT"
-  },
-  {
-    id: "coriander",
-    name: "Coriander",
-    category: "Spices",
-    summary: "Aromatic coriander for whole spice buyers.",
-    description: "Cleaned and graded coriander suitable for export and spice processing.",
-    image: "/images/spices.webp",
-    packaging: "10 kg, 25 kg, 50 kg bags",
-    moq: "5 MT"
-  },
-  {
-    id: "garlic",
-    name: "Garlic",
-    category: "Spices",
-    summary: "Export grade garlic with strong aroma and uniform cloves.",
-    description: "We supply well-sorted garlic suitable for export with moisture control, clean skins, and consistent sizing.",
-    image: "/images/garlic.webp",
-    packaging: "5 kg, 10 kg, 20 kg mesh bags",
-    moq: "5 MT"
-  },
-  {
-    id: "oregano",
-    name: "Oregano",
-    category: "Spices",
-    summary: "Dried oregano with strong aroma and clean sorting.",
-    description: "Export-quality dried oregano for seasoning blends and food manufacturing.",
-    image: "/images/oregano.webp",
-    packaging: "1 kg, 5 kg, 10 kg bags",
-    moq: "1 MT"
-  },
-  {
-    id: "seasoning-herbs",
-    name: "Seasoning Herbs",
-    category: "Spices",
-    summary: "Mixed herbs and seasoning options on request.",
-    description: "Custom seasoning herb mixes for bulk buyers with consistent aroma and quality.",
-    image: "/images/seasoning-herbs.webp",
-    packaging: "1 kg, 5 kg, 10 kg bags",
-    moq: "1 MT"
-  },
-  {
-    id: "whole-spices",
-    name: "Whole Spices",
-    category: "Spices",
-    summary: "Cumin, coriander, turmeric, and more on request.",
-    description: "Wide range of whole spices sourced from reliable farms with export-grade cleaning and packing.",
-    image: "/images/spices.webp",
-    packaging: "10 kg, 25 kg, 50 kg bags",
-    moq: "5 MT"
-  },
-  {
-    id: "onion",
-    name: "Onion",
-    category: "Agricultural",
-    summary: "Fresh onions with strong shelf life and uniform grading.",
-    description: "We provide export quality onions with proper curing and packing for longer transit.",
-    image: "/images/onion.webp",
-    packaging: "10 kg, 20 kg, 25 kg mesh bags",
-    moq: "10 MT"
-  },
-  {
-    id: "makhana",
-    name: "Makhana (Fox Nuts)",
-    category: "Agricultural",
-    summary: "Premium makhana with clean sorting and export packing.",
-    description: "High quality fox nuts for retail and bulk buyers. Roasted and unroasted lots available on request.",
-    image: "/images/makhana.webp",
-    packaging: "5 kg, 10 kg cartons",
-    moq: "3 MT"
-  },
-  {
-    id: "agricultural-products",
-    name: "Other Agricultural Products",
-    category: "Agricultural",
-    summary: "Additional agricultural products available on request.",
-    description: "We can source other agricultural products based on buyer requirements.",
-    image: "/images/agricultural-products.webp",
-    packaging: "Custom",
-    moq: "Custom"
+const SITE_CONFIG_URL = '/site.json'
+const PRODUCTS_URL = '/products.json'
+
+const $ = (selector, root = document) => root.querySelector(selector)
+const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector))
+
+async function fetchJson(url) {
+  const response = await fetch(url, { cache: 'no-cache' })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${url}`)
   }
-];
+  return await response.json()
+}
 
-// Mobile Navigation Toggle
-const navToggle = document.getElementById('navToggle');
-const navMenu = document.getElementById('navMenu');
-const navLinks = document.querySelectorAll('.nav-link');
+function normalizePhoneToTel(phone) {
+  if (!phone) return ''
+  const trimmed = String(phone).trim()
+  if (!trimmed) return ''
+  const normalized = trimmed.replace(/[^\d+]/g, '')
+  return normalized.startsWith('+') ? normalized : `+${normalized}`
+}
 
-navToggle.addEventListener('click', () => {
-    const isOpen = navMenu.classList.toggle('active');
-    navToggle.classList.toggle('active', isOpen);
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-});
+function setTextById(id, value) {
+  const el = document.getElementById(id)
+  if (!el) return
+  el.textContent = value ?? ''
+}
 
-// Close mobile menu when clicking a link
-navLinks.forEach(link => {
+function setLinkById(id, href, text) {
+  const el = document.getElementById(id)
+  if (!el) return
+  el.setAttribute('href', href)
+  if (text) el.textContent = text
+}
+
+function setNavHeightVar() {
+  const navbar = document.getElementById('navbar')
+  if (!navbar) return
+  document.documentElement.style.setProperty('--nav-height', `${navbar.offsetHeight}px`)
+}
+
+function setupMobileNav() {
+  const navToggle = document.getElementById('navToggle')
+  const navMenu = document.getElementById('navMenu')
+  const navLinks = $$('.nav-link')
+
+  navToggle?.addEventListener('click', () => {
+    const isOpen = navMenu?.classList.toggle('active')
+    navToggle.classList.toggle('active', Boolean(isOpen))
+    navToggle.setAttribute('aria-expanded', String(Boolean(isOpen)))
+  })
+
+  navLinks.forEach((link) => {
     link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
-        navToggle.setAttribute('aria-expanded', 'false');
-    });
-});
-
-// Navbar Scroll Effect
-const navbar = document.getElementById('navbar');
-let lastScroll = 0;
-
-// Keep CSS nav height in sync (prevents overlap on all screens)
-function setNavHeight() {
-    if (!navbar) return;
-    document.documentElement.style.setProperty('--nav-height', `${navbar.offsetHeight}px`);
+      navMenu?.classList.remove('active')
+      navToggle?.classList.remove('active')
+      navToggle?.setAttribute('aria-expanded', 'false')
+    })
+  })
 }
 
-window.addEventListener('load', setNavHeight);
-window.addEventListener('resize', setNavHeight);
+function setupNavbarScrollEffect() {
+  const navbar = document.getElementById('navbar')
+  if (!navbar) return
 
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 100) {
-        navbar.classList.add('scrolled');
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 100) {
+      navbar.classList.add('scrolled')
     } else {
-        navbar.classList.remove('scrolled');
+      navbar.classList.remove('scrolled')
     }
-    
-    lastScroll = currentScroll;
-});
-
-// Active Navigation Link on Scroll
-const sections = document.querySelectorAll('section[id]');
-
-function updateActiveLink() {
-    const navHeight = navbar ? navbar.offsetHeight : 80;
-    const scrollPosition = window.scrollY + navHeight + 20;
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-    });
+  })
 }
 
-window.addEventListener('scroll', updateActiveLink);
+function setupActiveNavLink() {
+  const navbar = document.getElementById('navbar')
+  const navLinks = $$('.nav-link')
+  const sections = $$('section[id]')
 
-// Smooth Scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  function updateActiveLink() {
+    const navHeight = navbar ? navbar.offsetHeight : 80
+    const scrollPosition = window.scrollY + navHeight + 24
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop
+      const sectionHeight = section.offsetHeight
+      const sectionId = section.getAttribute('id')
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        navLinks.forEach((link) => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`)
+        })
+      }
+    })
+  }
+
+  window.addEventListener('scroll', updateActiveLink)
+  updateActiveLink()
+}
+
+function setupSmoothScroll() {
+  const navbar = document.getElementById('navbar')
+  $$('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        
-        if (target) {
-            const navHeight = navbar ? navbar.offsetHeight : 80;
-            const offsetTop = target.offsetTop - navHeight - 10;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
+      const href = this.getAttribute('href')
+      if (!href || href === '#') return
+      const target = $(href)
+      if (!target) return
 
-// Load Products
+      e.preventDefault()
+      const navHeight = navbar ? navbar.offsetHeight : 80
+      const offsetTop = target.offsetTop - navHeight - 10
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' })
+    })
+  })
+}
+
+function renderCertifications(certifications) {
+  const certWrap = document.getElementById('certifications')
+  if (!certWrap) return
+  if (!Array.isArray(certifications) || certifications.length === 0) return
+
+  certWrap.innerHTML = certifications
+    .map((c) => {
+      const label = c?.label ? String(c.label) : ''
+      const detail = c?.detail ? String(c.detail) : ''
+      return `<div class="trust-item"><span class="trust-badge">${label}</span><span>${detail}</span></div>`
+    })
+    .join('')
+}
+
+function applySiteConfig(cfg) {
+  const companyName = cfg?.companyName || 'Samarth Overseas'
+  setTextById('companyName', companyName)
+  setTextById('footerCompanyName', companyName)
+
+  if (cfg?.address) {
+    setTextById('companyAddress', cfg.address)
+    setTextById('footerCompanyAddress', cfg.address)
+  }
+
+  if (cfg?.email) {
+    setLinkById('companyEmailLink', `mailto:${cfg.email}`, cfg.email)
+    setLinkById('footerCompanyEmailLink', `mailto:${cfg.email}`, cfg.email)
+  }
+
+  const tel = normalizePhoneToTel(cfg?.phone)
+  const phoneRow = document.getElementById('phoneRow')
+  const footerPhone = document.getElementById('footerCompanyPhone')
+  if (tel) {
+    setLinkById('companyPhoneLink', `tel:${tel}`, cfg.phone)
+    setTextById('footerCompanyPhone', cfg.phone)
+    phoneRow?.removeAttribute('hidden')
+    footerPhone?.removeAttribute('hidden')
+  } else {
+    phoneRow?.setAttribute('hidden', 'true')
+    setTextById('footerCompanyPhone', '')
+    footerPhone?.setAttribute('hidden', 'true')
+  }
+
+  if (cfg?.stats) {
+    if (cfg.stats.categories) setTextById('statCategories', cfg.stats.categories)
+    if (cfg.stats.tons) setTextById('statTons', cfg.stats.tons)
+    if (cfg.stats.quality) setTextById('statQuality', cfg.stats.quality)
+  }
+
+  renderCertifications(cfg?.certifications)
+
+  const whatsappFloat = document.getElementById('whatsappFloat')
+  const wa = String(cfg?.whatsapp || '').trim()
+  if (whatsappFloat && wa) {
+    const digits = wa.replace(/[^\d]/g, '')
+    whatsappFloat.href = `https://wa.me/${digits}`
+    whatsappFloat.removeAttribute('hidden')
+  } else if (whatsappFloat) {
+    whatsappFloat.setAttribute('hidden', 'true')
+  }
+}
+
 function createProductCard(product) {
-    return `
-        <div class="product-card" data-category="${product.category}">
-            <div class="product-image-container">
-                <img src="${product.image}" alt="${product.name}" loading="lazy">
-                <div class="product-category-badge">${product.category}</div>
-            </div>
-            <div class="product-content">
-                <h3 class="product-name">${product.name}</h3>
-                <p class="product-description">${product.description}</p>
-                <ul class="product-specs">
-                    <li>Packaging: ${product.packaging}</li>
-                    <li>MOQ: ${product.moq}</li>
-                </ul>
-                <a href="#contact" class="product-cta">Request Quote</a>
-            </div>
-        </div>
-    `;
+  const name = product?.name ? String(product.name) : 'Product'
+  const description = product?.description ? String(product.description) : ''
+  const category = product?.category ? String(product.category) : ''
+  const packaging = product?.packaging ? String(product.packaging) : 'Custom'
+  const moq = product?.moq ? String(product.moq) : 'Custom'
+  const image = product?.image ? String(product.image) : '/images/placeholder.svg'
+
+  return `
+    <div class="product-card" data-category="${category}">
+      <div class="product-image-container">
+        <img src="${image}" alt="${name}" loading="lazy" decoding="async">
+        <div class="product-category-badge">${category}</div>
+      </div>
+      <div class="product-content">
+        <h3 class="product-name">${name}</h3>
+        <p class="product-description">${description}</p>
+        <ul class="product-specs">
+          <li>Packaging: ${packaging}</li>
+          <li>MOQ: ${moq}</li>
+        </ul>
+        <a href="#contact" class="product-cta">Request Quote</a>
+      </div>
+    </div>
+  `
 }
 
-function loadProducts() {
-    const productsGrid = document.getElementById('productsGrid');
-    if (!productsGrid) return;
-    
-    const productsHTML = productsData.map(product => createProductCard(product)).join('');
-    productsGrid.innerHTML = productsHTML;
-    
-    // Add animation to product cards
-    setTimeout(() => {
-        const cards = document.querySelectorAll('.product-card');
-        cards.forEach((card, index) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, index * 50);
-        });
-    }, 100);
+function renderProducts(products) {
+  const productsGrid = document.getElementById('productsGrid')
+  if (!productsGrid) return
+
+  if (!Array.isArray(products) || products.length === 0) {
+    productsGrid.innerHTML =
+      '<p style="grid-column: 1 / -1; color: #5A5A5A;">Products are currently unavailable. Please contact us for the latest catalog.</p>'
+    return
+  }
+
+  productsGrid.innerHTML = products.map((p) => createProductCard(p)).join('')
+
+  // Entry animation
+  requestAnimationFrame(() => {
+    const cards = $$('.product-card')
+    cards.forEach((card, index) => {
+      card.style.opacity = '0'
+      card.style.transform = 'translateY(18px)'
+      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease'
+      setTimeout(() => {
+        card.style.opacity = '1'
+        card.style.transform = 'translateY(0)'
+      }, index * 40)
+    })
+  })
 }
 
-// Category Filter
-const filterButtons = document.querySelectorAll('.filter-btn');
+function setupCategoryFilter() {
+  const filterButtons = $$('.filter-btn')
+  if (!filterButtons.length) return
 
-filterButtons.forEach(button => {
+  filterButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        const category = button.getAttribute('data-category');
-        
-        // Update active button
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        
-        // Filter products
-        const productCards = document.querySelectorAll('.product-card');
-        
-        productCards.forEach(card => {
-            if (category === 'all' || card.getAttribute('data-category') === category) {
-                card.classList.remove('hidden');
-                // Animate in
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 50);
-            } else {
-                card.classList.add('hidden');
-            }
-        });
-    });
-});
+      const category = button.getAttribute('data-category')
+      filterButtons.forEach((btn) => btn.classList.remove('active'))
+      button.classList.add('active')
 
-// Contact Form Handling
-const contactForm = document.getElementById('contactForm');
+      $$('.product-card').forEach((card) => {
+        const matches = category === 'all' || card.getAttribute('data-category') === category
+        card.classList.toggle('hidden', !matches)
+        if (matches) {
+          card.style.opacity = '0'
+          card.style.transform = 'translateY(14px)'
+          setTimeout(() => {
+            card.style.opacity = '1'
+            card.style.transform = 'translateY(0)'
+          }, 40)
+        }
+      })
+    })
+  })
+}
 
-contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData);
-    
-    // Basic validation
+function setupContactForm(cfg) {
+  const contactForm = document.getElementById('contactForm')
+  const status = document.getElementById('formStatus')
+  if (!contactForm) return
+
+  const setStatus = (type, message) => {
+    if (!status) return
+    status.classList.remove('is-success', 'is-error')
+    if (type) status.classList.add(type === 'success' ? 'is-success' : 'is-error')
+    status.textContent = message || ''
+  }
+
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    setStatus('', '')
+
+    const formData = new FormData(contactForm)
+    const data = Object.fromEntries(formData)
+
     if (!data.name || !data.company || !data.email || !data.message) {
-        alert('Please fill in all required fields.');
-        return;
+      setStatus('error', 'Please fill in all required fields.')
+      return
     }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
-        alert('Please enter a valid email address.');
-        return;
-    }
-    
-    // Show loading state
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
-    
-    // Simulate form submission (replace with actual API call)
-    setTimeout(() => {
-        alert('Thank you for your inquiry! We will get back to you within 24 hours.');
-        contactForm.reset();
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    }, 1500);
-});
 
-// Stats Counter Animation
-function animateCounter(element, target, duration = 2000) {
-    let current = 0;
-    const increment = target / (duration / 16);
-    const isPercentage = target === 100;
-    
-    const updateCounter = () => {
-        current += increment;
-        if (current < target) {
-            element.textContent = Math.floor(current) + (isPercentage ? '%' : '+');
-            requestAnimationFrame(updateCounter);
-        } else {
-            element.textContent = target + (isPercentage ? '%' : '+');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(String(data.email))) {
+      setStatus('error', 'Please enter a valid email address.')
+      return
+    }
+
+    const submitBtn = contactForm.querySelector('button[type="submit"]')
+    const originalText = submitBtn?.textContent || 'Send Inquiry'
+    if (submitBtn) {
+      submitBtn.textContent = 'Sending...'
+      submitBtn.disabled = true
+    }
+
+    const endpoint = String(cfg?.contactEndpoint || '').trim()
+    const companyEmail = String(cfg?.email || 'info@samarthoverseasindia.com').trim()
+
+    try {
+      if (endpoint) {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...data,
+            source: 'website',
+            submittedAt: new Date().toISOString(),
+          }),
+        })
+
+        if (!response.ok) {
+          throw new Error('Submission failed')
         }
-    };
-    
-    updateCounter();
+
+        setStatus('success', 'Thanks! Your inquiry has been sent. We will reply within 24 hours.')
+        contactForm.reset()
+      } else {
+        // Fallback: open email draft
+        const subject = encodeURIComponent(`Inquiry from ${data.name} (${data.company})`)
+        const body = encodeURIComponent(
+          `Name: ${data.name}\nCompany: ${data.company}\nEmail: ${data.email}\nPhone: ${data.phone || ''}\nCountry: ${data.country || ''}\nProduct Interest: ${data.product || ''}\n\nMessage:\n${data.message}\n`,
+        )
+        window.location.href = `mailto:${companyEmail}?subject=${subject}&body=${body}`
+        setStatus('success', 'Opening your email app to send the inquiry.')
+      }
+    } catch (error) {
+      console.error(error)
+      setStatus('error', 'Sorry—something went wrong. Please try again or email us directly.')
+    } finally {
+      if (submitBtn) {
+        submitBtn.textContent = originalText
+        submitBtn.disabled = false
+      }
+    }
+  })
 }
 
-// Trigger counter animation when stats section is visible
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-            entry.target.classList.add('counted');
-            const statNumbers = entry.target.querySelectorAll('.stat-number');
-            
-            statNumbers.forEach(stat => {
-                const text = stat.textContent;
-                const isPercentage = text.includes('%');
-                const number = parseInt(text.replace(/\D/g, ''));
-                
-                animateCounter(stat, number);
-            });
-        }
-    });
-}, { threshold: 0.5 });
+function setupStatsCounter() {
+  const heroStats = $('.hero-stats')
+  if (!heroStats) return
 
-const heroStats = document.querySelector('.hero-stats');
-if (heroStats) {
-    statsObserver.observe(heroStats);
+  function animateCounter(element, target, duration = 1800) {
+    let current = 0
+    const increment = target / (duration / 16)
+    const isPercentage = target === 100
+
+    const update = () => {
+      current += increment
+      if (current < target) {
+        element.textContent = Math.floor(current) + (isPercentage ? '%' : '+')
+        requestAnimationFrame(update)
+      } else {
+        element.textContent = target + (isPercentage ? '%' : '+')
+      }
+    }
+
+    update()
+  }
+
+  const statsObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || entry.target.classList.contains('counted')) return
+        entry.target.classList.add('counted')
+        $$('.stat-number', entry.target).forEach((stat) => {
+          const text = stat.textContent || ''
+          const number = parseInt(text.replace(/\D/g, ''), 10)
+          if (!Number.isFinite(number)) return
+          animateCounter(stat, number)
+        })
+      })
+    },
+    { threshold: 0.5 },
+  )
+
+  statsObserver.observe(heroStats)
 }
 
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    loadProducts();
-});
+async function init() {
+  setupMobileNav()
+  setupNavbarScrollEffect()
+  setupSmoothScroll()
+  setupActiveNavLink()
 
-console.log('%c🌾 Samarth Overseas', 'font-size: 20px; font-weight: bold; color: #2C5530;');
-console.log('%cPremium Export Products from India', 'font-size: 14px; color: #5A5A5A;');
-console.log('%cWebsite developed with care for quality and excellence', 'font-size: 12px; color: #D4AF37;');
+  setNavHeightVar()
+  window.addEventListener('resize', setNavHeightVar)
+
+  let cfg = {}
+  try {
+    cfg = await fetchJson(SITE_CONFIG_URL)
+  } catch {
+    cfg = {}
+  }
+  applySiteConfig(cfg)
+  setupContactForm(cfg)
+
+  let products = []
+  try {
+    products = await fetchJson(PRODUCTS_URL)
+  } catch {
+    products = []
+  }
+  renderProducts(Array.isArray(products) ? products : [])
+  setupCategoryFilter()
+  setupStatsCounter()
+
+  console.log('%c Samarth Overseas', 'font-size: 16px; font-weight: bold; color: #2C5530;')
+}
+
+document.addEventListener('DOMContentLoaded', init)
+

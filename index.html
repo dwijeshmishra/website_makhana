@@ -8,8 +8,15 @@
     <meta property="og:title" content="Samarth Overseas - Export Quality Products">
     <meta property="og:description" content="Samarth Overseas supplies export-quality rice, spices, confectionery, and agricultural products from India to global markets.">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="/images/logo.jpg">
+    <meta property="og:image:alt" content="Samarth Overseas logo">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Samarth Overseas - Export Quality Products">
+    <meta name="twitter:description" content="Samarth Overseas supplies export-quality rice, spices, confectionery, and agricultural products from India to global markets.">
+    <meta name="twitter:image" content="/images/logo.jpg">
     <meta name="theme-color" content="#2C5530">
     <link rel="icon" type="image/jpeg" href="/images/logo.jpg">
+    <link rel="canonical" href="https://www.samarthoverseasindia.com/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,8 +27,8 @@
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <div class="logo">
-                <img src="/images/logo.jpg" alt="Samarth Overseas Logo" class="logo-img">
-                <span class="logo-text">Samarth Overseas</span>
+                <img src="/images/logo.jpg" alt="Samarth Overseas Logo" class="logo-img" width="50" height="50" decoding="async">
+                <span class="logo-text" id="companyName">Samarth Overseas</span>
             </div>
             <div class="nav-menu" id="navMenu">
                 <a href="#home" class="nav-link active">Home</a>
@@ -58,22 +65,29 @@
                 </div>
                 <div class="hero-stats">
                     <div class="stat">
-                        <div class="stat-number">15+</div>
+                        <div class="stat-number" id="statCategories">15+</div>
                         <div class="stat-label">Product Categories</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">500+</div>
+                        <div class="stat-number" id="statTons">500+</div>
                         <div class="stat-label">Tons Exported</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">100%</div>
+                        <div class="stat-number" id="statQuality">100%</div>
                         <div class="stat-label">Quality Assured</div>
+                    </div>
+                </div>
+                <div class="trust-strip" aria-label="Certifications">
+                    <div class="trust-grid" id="certifications">
+                        <div class="trust-item"><span class="trust-badge">FSSAI</span><span>Food Safety</span></div>
+                        <div class="trust-item"><span class="trust-badge">APEDA</span><span>Export Registered</span></div>
+                        <div class="trust-item"><span class="trust-badge">ISO</span><span>Quality Systems</span></div>
                     </div>
                 </div>
             </div>
             <div class="hero-image" aria-hidden="true">
                 <div class="image-frame">
-                    <img class="hero-photo" src="/images/spices.webp" alt="" loading="eager">
+                    <img class="hero-photo" src="/images/spices.webp" alt="" loading="eager" decoding="async">
                 </div>
                 <div class="hero-float">
                     <div class="hero-float-title">Export-ready</div>
@@ -257,21 +271,21 @@
                             <div class="contact-icon">📍</div>
                             <div>
                                 <h4>Address</h4>
-                                <p>Indore, Madhya Pradesh, India</p>
+                                <p id="companyAddress">Indore, Madhya Pradesh, India</p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <div class="contact-icon">📧</div>
                             <div>
                                 <h4>Email</h4>
-                                <p><a href="mailto:info@samarthoverseasindia.com">info@samarthoverseasindia.com</a></p>
+                                <p><a id="companyEmailLink" href="mailto:info@samarthoverseasindia.com">info@samarthoverseasindia.com</a></p>
                             </div>
                         </div>
-                        <div class="contact-item">
+                        <div class="contact-item" id="phoneRow">
                             <div class="contact-icon">📱</div>
                             <div>
                                 <h4>Phone</h4>
-                                <p>+91 9876543210</p>
+                                <p><a id="companyPhoneLink" href="tel:+919876543210">+91 98765 43210</a></p>
                             </div>
                         </div>
                     </div>
@@ -315,6 +329,7 @@
                             <label for="message">Message *</label>
                             <textarea id="message" name="message" rows="4" required></textarea>
                         </div>
+                        <div class="form-status" id="formStatus" aria-live="polite"></div>
                         <button type="submit" class="btn btn-primary btn-full">Send Inquiry</button>
                     </form>
                 </div>
@@ -328,8 +343,8 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="/images/logo.jpg" alt="Logo" class="footer-logo-img">
-                        <span class="logo-text">Samarth Overseas</span>
+                        <img src="/images/logo.jpg" alt="Samarth Overseas Logo" class="footer-logo-img" width="44" height="44" loading="lazy" decoding="async">
+                        <span class="logo-text" id="footerCompanyName">Samarth Overseas</span>
                     </div>
                     <p>Quality export products from India to the world.</p>
                 </div>
@@ -354,9 +369,9 @@
                 <div class="footer-col">
                     <h4>Contact</h4>
                     <ul>
-                        <li>Indore, Madhya Pradesh, India</li>
-                        <li><a href="mailto:info@samarthoverseasindia.com">info@samarthoverseasindia.com</a></li>
-                        <li>+91 9876543210</li>
+                        <li id="footerCompanyAddress">Indore, Madhya Pradesh, India</li>
+                        <li><a id="footerCompanyEmailLink" href="mailto:info@samarthoverseasindia.com">info@samarthoverseasindia.com</a></li>
+                        <li id="footerCompanyPhone">+91 98765 43210</li>
                     </ul>
                 </div>
             </div>
@@ -365,6 +380,8 @@
             </div>
         </div>
     </footer>
+
+    <a class="whatsapp-float" id="whatsappFloat" href="#" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" hidden>WhatsApp</a>
 
     <script type="module" src="/script.js"></script>
 </body>

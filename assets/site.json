@@ -1,0 +1,20 @@
+{
+  "siteUrl": "https://www.samarthoverseasindia.com/",
+  "companyName": "Samarth Overseas",
+  "email": "info@samarthoverseasindia.com",
+  "phone": "",
+  "whatsapp": "",
+  "address": "Indore, Madhya Pradesh, India",
+  "stats": {
+    "categories": "15+",
+    "tons": "500+",
+    "quality": "100%"
+  },
+  "certifications": [
+    { "label": "FSSAI", "detail": "Food Safety" },
+    { "label": "APEDA", "detail": "Export Registered" },
+    { "label": "ISO", "detail": "Quality Systems" }
+  ],
+  "contactEndpoint": ""
+}
+
