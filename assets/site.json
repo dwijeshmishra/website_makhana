@@ -21,6 +21,7 @@
     { "label": "APEDA", "detail": "Export Registered" },
     { "label": "ISO", "detail": "Quality Systems" }
   ],
-  "contactEndpoint": ""
+  "contactEndpoint": "",
+  "showProductTags": false
 }
 

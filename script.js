@@ -205,6 +205,11 @@ function applySiteConfig(cfg) {
     heroWhatsAppBtn?.setAttribute('hidden', 'true')
   }
 
+  // Product detail page already has a WhatsApp CTA
+  if (window.location.pathname.endsWith('/product.html')) {
+    whatsappFloat?.setAttribute('hidden', 'true')
+  }
+
   setupHeroImages(cfg?.heroImages)
 }
 
@@ -501,6 +506,7 @@ function renderProductDetail(products, cfg) {
   const image = product.image || '/images/placeholder.svg'
   const tags = Array.isArray(product.tags) ? product.tags : []
   const waLink = buildWhatsAppProductLink(cfg?.whatsapp, product)
+  const showTags = cfg?.showProductTags === true
 
   wrap.innerHTML = `
     <div class="product-detail-grid">
@@ -520,7 +526,7 @@ function renderProductDetail(products, cfg) {
         </div>
 
         ${
-          tags.length
+          showTags && tags.length
             ? `<div class="tag-row">${tags
                 .map((t) => `<span class="tag-pill">${String(t)}</span>`)
                 .join('')}</div>`
