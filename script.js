@@ -77,6 +77,23 @@ function setupActiveNavLink() {
   const navLinks = $$('.nav-link')
   const sections = $$('section[id]')
 
+  const hasHashLinks = navLinks.some((link) => (link.getAttribute('href') || '').startsWith('#'))
+
+  // Multi-page nav: highlight by pathname
+  if (!hasHashLinks) {
+    const path = window.location.pathname || '/'
+    navLinks.forEach((link) => {
+      const href = link.getAttribute('href') || ''
+      if (!href) return
+      if (href === '/') {
+        link.classList.toggle('active', path === '/' || path.endsWith('/index.html'))
+      } else {
+        link.classList.toggle('active', path.endsWith(href))
+      }
+    })
+    return
+  }
+
   function updateActiveLink() {
     const navHeight = navbar ? navbar.offsetHeight : 80
     const scrollPosition = window.scrollY + navHeight + 24

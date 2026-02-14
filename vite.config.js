@@ -1,4 +1,8 @@
 import { defineConfig } from 'vite'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   root: '.',
@@ -10,6 +14,13 @@ export default defineConfig({
     sourcemap: false,
     minify: 'esbuild',
     rollupOptions: {
+      input: {
+        index: resolve(__dirname, 'index.html'),
+        about: resolve(__dirname, 'about.html'),
+        products: resolve(__dirname, 'products.html'),
+        quality: resolve(__dirname, 'quality.html'),
+        contact: resolve(__dirname, 'contact.html'),
+      },
       output: {
         manualChunks: undefined,
         assetFileNames: 'assets/[name].[hash][extname]',
