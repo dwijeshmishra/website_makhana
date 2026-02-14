@@ -29,6 +29,9 @@
     --transition-fast: 0.2s ease;
     --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Layout */
+    --nav-height: 80px;
 }
 
 * {
@@ -47,6 +50,11 @@ body {
     background: var(--light);
     line-height: 1.6;
     overflow-x: hidden;
+}
+
+/* Better anchor positioning with fixed navbar */
+section[id] {
+    scroll-margin-top: calc(var(--nav-height, 80px) + 1rem);
 }
 
 .container {
@@ -76,7 +84,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.25rem 2rem;
+    /* Horizontal padding comes from `.container` */
+    padding: 1.15rem 0;
 }
 
 .logo {
@@ -104,8 +113,10 @@ body {
 
 .nav-menu {
     display: flex;
-    gap: 2.5rem;
+    gap: 1.75rem;
     align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
 }
 
 .nav-link {
@@ -160,8 +171,8 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    /* Extra space under fixed navbar to prevent overlap */
-    padding-top: 120px;
+    /* Space under fixed navbar (set dynamically in JS) */
+    padding-top: calc(var(--nav-height, 80px) + 2rem);
     position: relative;
     overflow: hidden;
 }
@@ -203,7 +214,7 @@ body {
 
 .hero-title {
     font-family: var(--font-display);
-    font-size: 4.5rem;
+    font-size: clamp(2.6rem, 4.2vw, 4.25rem);
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 1.5rem;
@@ -1328,10 +1339,10 @@ body {
 @media (max-width: 768px) {
     .nav-menu {
         position: fixed;
-        top: 80px;
+        top: var(--nav-height, 80px);
         left: -100%;
         width: 100%;
-        height: calc(100vh - 80px);
+        height: calc(100vh - var(--nav-height, 80px));
         background: var(--white);
         flex-direction: column;
         padding: 2rem;

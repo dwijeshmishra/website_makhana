@@ -176,6 +176,15 @@ navLinks.forEach(link => {
 const navbar = document.getElementById('navbar');
 let lastScroll = 0;
 
+// Keep CSS nav height in sync (prevents overlap on all screens)
+function setNavHeight() {
+    if (!navbar) return;
+    document.documentElement.style.setProperty('--nav-height', `${navbar.offsetHeight}px`);
+}
+
+window.addEventListener('load', setNavHeight);
+window.addEventListener('resize', setNavHeight);
+
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     
@@ -192,7 +201,8 @@ window.addEventListener('scroll', () => {
 const sections = document.querySelectorAll('section[id]');
 
 function updateActiveLink() {
-    const scrollPosition = window.scrollY + 100;
+    const navHeight = navbar ? navbar.offsetHeight : 80;
+    const scrollPosition = window.scrollY + navHeight + 20;
     
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
@@ -219,7 +229,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(this.getAttribute('href'));
         
         if (target) {
-            const offsetTop = target.offsetTop - 120;
+            const navHeight = navbar ? navbar.offsetHeight : 80;
+            const offsetTop = target.offsetTop - navHeight - 10;
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
