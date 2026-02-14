@@ -1,40 +1,371 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/jpeg" href="/images/logo.jpg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samarth Overseas - Export Quality Products</title>
-    <meta
-      name="description"
-      content="Samarth Overseas supplies export-quality rice, spices, confectionery, and agricultural products."
-    />
-    <meta property="og:title" content="Samarth Overseas - Export Quality Products" />
-    <meta
-      property="og:description"
-      content="Samarth Overseas supplies export-quality rice, spices, confectionery, and agricultural products."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.samarthoverseasindia.com/" />
-    <meta property="og:image" content="https://www.samarthoverseasindia.com/images/logo.jpg" />
-    <meta property="og:image:alt" content="Samarth Overseas logo" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Samarth Overseas - Export Quality Products" />
-    <meta
-      name="twitter:description"
-      content="Samarth Overseas supplies export-quality rice, spices, confectionery, and agricultural products."
-    />
-    <meta name="twitter:image" content="https://www.samarthoverseasindia.com/images/logo.jpg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/styles.css" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    <meta name="description" content="Samarth Overseas supplies export-quality rice, spices, confectionery, and agricultural products from India to global markets.">
+    <meta property="og:title" content="Samarth Overseas - Export Quality Products">
+    <meta property="og:description" content="Samarth Overseas supplies export-quality rice, spices, confectionery, and agricultural products from India to global markets.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#2C5530">
+    <link rel="icon" type="image/jpeg" href="/images/logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="/images/logo.jpg" alt="Samarth Overseas Logo" class="logo-img">
+                <span class="logo-text">Samarth Overseas</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#quality" class="nav-link">Quality</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-controls="navMenu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">Trusted Export Partner Since 2015</div>
+                <h1 class="hero-title">
+                    <span class="title-line">Quality Products</span>
+                    <span class="title-line highlight">Global Markets</span>
+                </h1>
+                <p class="hero-description">
+                    Leading exporter of premium rice, spices, confectionery, and agricultural products from India. 
+                    Delivering excellence to international buyers across 15+ countries.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Request Quote</a>
+                    <a href="#products" class="btn btn-secondary">View Products</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Product Categories</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Tons Exported</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Quality Assured</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image" aria-hidden="true">
+                <div class="image-frame">
+                    <img class="hero-photo" src="/images/spices.webp" alt="" loading="eager">
+                </div>
+                <div class="hero-float">
+                    <div class="hero-float-title">Export-ready</div>
+                    <div class="hero-float-subtitle">Clean grading &amp; custom packing</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Our Story</span>
+                <h2 class="section-title">Trusted Export Partner<br>Since 2015</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-content">
+                    <p class="about-text">
+                        Based in India, Samarth Overseas has established itself as a reliable exporter of high-quality 
+                        agricultural products, spices, rice, and confectionery. Our commitment to quality and customer 
+                        satisfaction has made us a preferred partner for businesses worldwide.
+                    </p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">🌾</div>
+                            <div class="feature-text">
+                                <h3>Direct Sourcing</h3>
+                                <p>From trusted suppliers ensuring freshness and authenticity</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">
+                                <h3>Quality Control</h3>
+                                <p>Rigorous testing and grading at every stage</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🌍</div>
+                            <div class="feature-text">
+                                <h3>Global Reach</h3>
+                                <p>Reliable export to 15+ countries worldwide</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="visual-card card-1">
+                        <div class="card-pattern"></div>
+                        <h3>Our Mission</h3>
+                        <p>To deliver premium quality Indian products to global markets with integrity and excellence</p>
+                    </div>
+                    <div class="visual-card card-2">
+                        <div class="card-pattern"></div>
+                        <h3>Our Values</h3>
+                        <ul>
+                            <li>Quality First</li>
+                            <li>Customer Trust</li>
+                            <li>Timely Delivery</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-label">Our Range</span>
+                <h2 class="section-title">Premium Export Products</h2>
+                <p class="section-description">
+                    Carefully sourced and quality-checked products for international markets
+                </p>
+            </div>
+            
+            <!-- Category Filter -->
+            <div class="category-filter">
+                <button class="filter-btn active" data-category="all">All Products</button>
+                <button class="filter-btn" data-category="Rice">Rice</button>
+                <button class="filter-btn" data-category="Spices">Spices</button>
+                <button class="filter-btn" data-category="Confectionery">Confectionery</button>
+                <button class="filter-btn" data-category="Agricultural">Agricultural</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded from JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Section -->
+    <section class="quality" id="quality">
+        <div class="container">
+            <div class="quality-grid">
+                <div class="quality-content">
+                    <span class="section-label">Certifications</span>
+                    <h2 class="section-title">Quality You Can Trust</h2>
+                    <p class="quality-text">
+                        Our commitment to excellence is backed by international certifications 
+                        and rigorous quality control processes at every stage.
+                    </p>
+                    <div class="certifications">
+                        <div class="cert-item">
+                            <div class="cert-badge">FSSAI</div>
+                            <span>Food Safety Certified</span>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-badge">ISO</div>
+                            <span>ISO 22000:2018</span>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-badge">APEDA</div>
+                            <span>Export Registered</span>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-badge">GMP</div>
+                            <span>Good Manufacturing</span>
+                        </div>
+                    </div>
+                    <div class="quality-process">
+                        <h3>Our Process</h3>
+                        <div class="process-steps">
+                            <div class="process-step">
+                                <span class="step-number">01</span>
+                                <span class="step-text">Sourcing & Selection</span>
+                            </div>
+                            <div class="process-step">
+                                <span class="step-number">02</span>
+                                <span class="step-text">Quality Testing</span>
+                            </div>
+                            <div class="process-step">
+                                <span class="step-number">03</span>
+                                <span class="step-text">Processing & Packaging</span>
+                            </div>
+                            <div class="process-step">
+                                <span class="step-number">04</span>
+                                <span class="step-text">Export & Delivery</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="quality-visual">
+                    <div class="quality-highlight">
+                        <h3>100% Natural</h3>
+                        <p>Authentic products, no adulterants</p>
+                    </div>
+                    <div class="quality-highlight">
+                        <h3>Lab Tested</h3>
+                        <p>Every batch tested for purity</p>
+                    </div>
+                    <div class="quality-highlight">
+                        <h3>Traceable</h3>
+                        <p>Complete supply chain transparency</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="section-label">Get in Touch</span>
+                    <h2 class="section-title">Let's Start a Partnership</h2>
+                    <p class="contact-text">
+                        Looking to source quality products from India? We're here to help with 
+                        competitive pricing and reliable service.
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <h4>Address</h4>
+                                <p>Indore, Madhya Pradesh, India</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:info@samarthoverseasindia.com">info@samarthoverseasindia.com</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+91 9876543210</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company Name *</label>
+                            <input type="text" id="company" name="company" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country *</label>
+                            <input type="text" id="country" name="country" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product">Product Interest</label>
+                            <select id="product" name="product">
+                                <option value="">Select Category</option>
+                                <option value="rice">Rice</option>
+                                <option value="spices">Spices</option>
+                                <option value="confectionery">Confectionery</option>
+                                <option value="agricultural">Agricultural Products</option>
+                                <option value="custom">Custom Requirements</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="/images/logo.jpg" alt="Logo" class="footer-logo-img">
+                        <span class="logo-text">Samarth Overseas</span>
+                    </div>
+                    <p>Quality export products from India to the world.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#quality">Quality</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="#products">Rice</a></li>
+                        <li><a href="#products">Spices</a></li>
+                        <li><a href="#products">Confectionery</a></li>
+                        <li><a href="#products">Agricultural</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Indore, Madhya Pradesh, India</li>
+                        <li><a href="mailto:info@samarthoverseasindia.com">info@samarthoverseasindia.com</a></li>
+                        <li>+91 9876543210</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Samarth Overseas. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/script.js"></script>
+</body>
 </html>
